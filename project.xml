@@ -3,7 +3,7 @@
 	<!-- NMML reference: https://gist.github.com/1763850 -->
 	
 	<!-- metadata, make sure 'package' is at least 3 segments (ie. com.mycompany.myproject) -->
-	<meta title="Elevator Pitch" package="ElevatorPitch.GGJ.ElementalCode" version="1.0.0" company="Elemental Code" />
+	<meta title="Elevator Pitch" package="elevatorpitch.ggj.elementalcode" version="1.0.0" company="Elemental Code" />
 	
 	<!-- output -->
 	<app main="Main" file="ElevatorPitch" path="bin" />
@@ -26,5 +26,10 @@
 
 	<!-- optimize output
 	<haxeflag name="-dce full" /> -->
+	
+	<config:android target-sdk-version="19" />
+	<config:android install-location="preferExternal" />
+
+
 	
 </project>
