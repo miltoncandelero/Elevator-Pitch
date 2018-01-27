@@ -12,16 +12,15 @@ class VerticalMovingCursor extends Sprite
 	public static inline var BOT_SCROLL:Int = 885;
 
 	private var isGoingUp:Bool = false;
+	public var canTap:Bool = true;
 	
-	public var speed:Float = 0.1;
+	public var speed:Float = 0.6;
 	
 	public function new() 
 	{
 		super();
-		graphics.beginFill(0xFFFFFF);
-		graphics.lineStyle(5, 0);
-		graphics.drawRect(0, 0, 135, 20);
-		graphics.endFill();
+
+		enableTap();
 	}
 	
 	public function update(dt)
@@ -39,10 +38,12 @@ class VerticalMovingCursor extends Sprite
 		{
 			y = TOP_SCROLL;
 			isGoingUp = false;
+			enableTap();
 		}else if (y >= BOT_SCROLL)
 		{
 			y = BOT_SCROLL;
 			isGoingUp = true;
+			enableTap();
 		}
 	}
 	
@@ -55,6 +56,26 @@ class VerticalMovingCursor extends Sprite
 	{
 		speed -= 0.1;
 		if (speed < 0.1) speed = 0.1;
+	}
+	
+	public function taped() 
+	{
+		graphics.clear();
+		graphics.beginFill(0xFFFFFF,0);
+		graphics.lineStyle(5, 0);
+		graphics.drawRect(0, 0, 135, 20);
+		graphics.endFill();
+		canTap = false;
+	}
+	
+	public function enableTap()
+	{
+		graphics.clear();
+		graphics.beginFill(0xFFFFFF,1);
+		graphics.lineStyle(5, 0);
+		graphics.drawRect(0, 0, 135, 20);
+		graphics.endFill();
+		canTap = true;
 	}
 	
 }

@@ -53,7 +53,7 @@ import sys.FileSystem;
 		
 		var data, manifest, library;
 		
-		data = '{"name":null,"assets":"aoy4:pathy14:img%2Ftest.jpgy4:sizei51728y4:typey5:IMAGEy2:idR1y7:preloadtgoR2i15528R3y5:SOUNDR5y16:audio%2Fcoin.wavy9:pathGroupaR8hR6tgoR2i6068R3R7R5y16:audio%2Fhurt.wavR9aR10hR6tgh","version":2,"libraryArgs":[],"libraryType":null}';
+		data = '{"name":null,"assets":"aoy4:pathy14:img%2Ftest.jpgy4:sizei51728y4:typey5:IMAGEy2:idR1y7:preloadtgoR0y23:img%2FverticalGauge.pngR2i32628R3R4R5R7R6tgoR0y19:fonts%2Fvisitor.pngR2i3962R3R4R5R8R6tgoR0y19:fonts%2Fvisitor.xmlR2i10509R3y4:TEXTR5R9R6tgoR2i15528R3y5:SOUNDR5y16:audio%2Fcoin.wavy9:pathGroupaR12hR6tgoR2i6068R3R11R5y16:audio%2Fhurt.wavR13aR14hR6tgh","version":2,"libraryArgs":[],"libraryType":null}';
 		manifest = AssetManifest.parse (data, rootPath);
 		library = AssetLibrary.fromManifest (manifest);
 		Assets.registerLibrary ("default", library);
@@ -74,6 +74,9 @@ import sys.FileSystem;
 #if flash
 
 @:keep @:bind #if display private #end class __ASSET__img_test_jpg extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_verticalgauge_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__fonts_visitor_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__fonts_visitor_xml extends null { }
 @:keep @:bind #if display private #end class __ASSET__audio_coin_wav extends null { }
 @:keep @:bind #if display private #end class __ASSET__audio_hurt_wav extends null { }
 @:keep @:bind #if display private #end class __ASSET__manifest_default_json extends null { }
@@ -82,6 +85,9 @@ import sys.FileSystem;
 #elseif (desktop || cpp)
 
 @:image("assets/img/test.jpg") #if display private #end class __ASSET__img_test_jpg extends lime.graphics.Image {}
+@:image("assets/img/verticalGauge.png") #if display private #end class __ASSET__img_verticalgauge_png extends lime.graphics.Image {}
+@:image("assets/fonts/visitor.png") #if display private #end class __ASSET__fonts_visitor_png extends lime.graphics.Image {}
+@:file("assets/fonts/visitor.xml") #if display private #end class __ASSET__fonts_visitor_xml extends haxe.io.Bytes {}
 @:file("assets/audio/coin.wav") #if display private #end class __ASSET__audio_coin_wav extends haxe.io.Bytes {}
 @:file("assets/audio/hurt.wav") #if display private #end class __ASSET__audio_hurt_wav extends haxe.io.Bytes {}
 @:file("") #if display private #end class __ASSET__manifest_default_json extends haxe.io.Bytes {}
