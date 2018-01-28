@@ -1,0 +1,82 @@
+@import "https://fonts.googleapis.com/css?family=Roboto:300,400,500";
+@font-face {
+  font-family: pixelFont;
+  src: url(fonts/visitor1.ttf); }
+body {
+  color: #566b78;
+  background-color: #EFEFEF;
+  font-family: "pixelFont", "Roboto", "Helvetica", "Arial", sans-serif;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  margin: 0;
+  width: 100vw;
+  overflow-x: hidden; }
+
+main {
+  max-width: 50em;
+  margin: 0 auto;
+  padding: 4em 1em; }
+
+footer {
+  background-color: rgba(200, 200, 200, 0.8);
+  background-blend-mode: soft-light;
+  padding: 4em 1em;
+  width: 100%; }
+
+.team-grid {
+  width: 100%;
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 100px); }
+
+.team-item {
+  min-width: 320px;
+  height: 250px;
+  display: grid;
+  grid-template-columns: 1fr 1fr; }
+  .team-item .img-avatar-luli {
+    height: 250px;
+    background-image: url("imgs/luli1.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain; }
+  .team-item .img-avatar-milton {
+    height: 250px;
+    background-image: url("imgs/milton1.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain; }
+  .team-item .img-avatar-juan {
+    height: 250px;
+    background-image: url("imgs/juan1.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain; }
+  .team-item .description-text {
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; }
+
+h2 {
+  margin-top: 1em;
+  padding-top: 1em;
+  font-size: 3rem; }
+
+h1,
+h2,
+h3,
+h4,
+strong {
+  color: #333; }
+
+h3, h4 {
+  font-size: 2.3rem; }
+  h3 small, h4 small {
+    font-size: 1.15rem; }
+
+a {
+  color: #e81c4f; }
+
+/*# sourceMappingURL=style.css.map */
