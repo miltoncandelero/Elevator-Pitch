@@ -8,6 +8,7 @@ import engine.mapsheet.data.Behavior;
 import game.DoorAnimation;
 import game.VerticalRangeBar;
 import motion.Actuate;
+import motion.easing.Quad;
 import motion.easing.Linear;
 import openfl.Assets;
 import openfl.Lib;
@@ -56,7 +57,7 @@ class ElevatorGame extends Sprite
 		currentTime = previousTime = Lib.getTimer();
 		
 		//click on top of enter frame, that way is hierarchier? :|
-		addEventListener(MouseEvent.CLICK, onClick);
+		addEventListener(MouseEvent.MOUSE_DOWN, onClick);
 		addEventListener(Event.ENTER_FRAME, update);
 		
 		//Visitor font
@@ -77,13 +78,13 @@ class ElevatorGame extends Sprite
 		
 		//indicator bar
 		bar = new VerticalRangeBar();
-		bar.x = 420 + 135;
+		bar.x = 420 + 140;
 		bar.y = 45;
 		addChild(bar);
 		
 		//cursor.
 		cursor = new VerticalMovingCursor();
-		cursor.x = 405 + 135;
+		cursor.x = 405 + 140;
 		cursor.y = 110;
 		addChild(cursor);
 
@@ -102,9 +103,9 @@ class ElevatorGame extends Sprite
 		
 		//elevator box;
 		elevatorBox = new Sprite();
-		elevatorBox.addChild(new Bitmap(Assets.getBitmapData("img/elevatorBox.png")));
+		elevatorBox.addChild(new Bitmap(Assets.getBitmapData("img/elevatorBoxWired.png")));
 		elevatorBox.x = 35;
-		elevatorBox.y = 175;
+		elevatorBox.y = 390;
 		addChild(elevatorBox);
 		
 
@@ -113,25 +114,27 @@ class ElevatorGame extends Sprite
 		var hideoSheet = new Mapsheet(Assets.getBitmapData("img/hideo.png"));
 		hideoSheet.slice(5, 4);
 		hideoSheet.addBehavior(new Behavior("idle", [0], true));
-		hideoSheet.addBehavior(new Behavior("good", [0, 1,0,1], false, 15));
-		hideoSheet.addBehavior(new Behavior("meh", [5, 6, 7], false, 10));
-		hideoSheet.addBehavior(new Behavior("bad", [10],false,5));
+		hideoSheet.addBehavior(new Behavior("good", [0,0,0,0, 1,0], false, 10));
+		hideoSheet.addBehavior(new Behavior("meh", [0,0,0,5, 6, 7], false, 10));
+		hideoSheet.addBehavior(new Behavior("bad", [0,0,10,10,10,10,10,10,10],false,10));
 		hideoSheet.addBehavior(new Behavior("suicide", [15,16,17,18,19],true,15));
 		
 		hideo = new Animation(hideoSheet);
 		hideo.showBehavior("idle");
 		hideo.x = 70;
-		hideo.y = 245;
+		hideo.y = 245 +350;
 		
 		//luli
 		var luSheet = new Mapsheet(Assets.getBitmapData("img/lu.png"));
 		luSheet.slice(5, 4);
 		luSheet.addBehavior(new Behavior("idle", [0], true));
+		luSheet.addBehavior(new Behavior("talk", [0, 1, 0, 1],false, 10));
+		luSheet.addBehavior(new Behavior("bad", [0,1,0,1,0,5, 6, 7, 7], false, 15));
 		lu = new Animation(luSheet);
 		lu.showBehavior("idle");
 		addChild(lu);
 		lu.x = 200;
-		lu.y = 245;
+		lu.y = 245 +350;
 		
 		addChild(hideo);
 		//--
@@ -139,8 +142,10 @@ class ElevatorGame extends Sprite
 		//doorContainer
 		doors = new DoorAnimation();
 		doors.x = 35;
-		doors.y = 175;
+		doors.y = 175 +350;
 		addChild(doors);
+		
+
 	}
 	
 	function onClick(e:MouseEvent = null):Void 
@@ -156,6 +161,7 @@ class ElevatorGame extends Sprite
 						cursor.speedUp();
 						good.play();
 						hideo.showBehaviors(["good", "idle"]);
+						lu.showBehaviors(["talk","idle"]);
 						var staticY:Float = cursor.y;
 						var scoreThingy:BitmapText = new BitmapText(font, "+1", 100, null, 4);
 						scoreThingy.y = staticY;
@@ -168,6 +174,7 @@ class ElevatorGame extends Sprite
 						
 						bad.play();
 						hideo.showBehaviors(["meh", "idle"]);
+						lu.showBehaviors(["talk","idle"]);
 						
 						var staticY:Float = cursor.y;
 						var scoreThingy:BitmapText = new BitmapText(font, "+0", 100, null, 4);
@@ -181,6 +188,7 @@ class ElevatorGame extends Sprite
 						cursor.speedDown();
 						bad.play();
 						hideo.showBehaviors(["bad", "idle"]);
+						lu.showBehaviors(["bad","idle"]);
 						
 						var staticY:Float = cursor.y;
 						var scoreThingy:BitmapText = new BitmapText(font, "-1", 100, null, 4);
@@ -196,12 +204,21 @@ class ElevatorGame extends Sprite
 			}
 			
 			case "MENU":{
-				doors.openDoor();
+				state = "ANIMATING"; //inexistent state
 				Actuate.tween(bar , 0.5, {x : 420}).ease(Linear.easeNone);
 				Actuate.tween(cursor , 0.5, {x : 405}).ease(Linear.easeNone);
-				Actuate.timer(0.6).onComplete(function () {state = "GAME"; });
-				Actuate.tween(lazybg, 15, {y:0}).ease(Linear.easeNone).onComplete(function (){state="GAMEOVER"; });
-				Actuate.tween(rustyPipes, 15, {y:0}).ease(Linear.easeNone);
+				Actuate.timer(1.7).onComplete(function () {
+					state = "GAME";
+					Actuate.tween(lazybg, 15, {y:0}).ease(Linear.easeNone).onComplete(function (){state="GAMEOVER"; });
+					Actuate.tween(rustyPipes, 15, {y:0}).ease(Linear.easeNone);
+				});
+				
+				//start position.
+				Actuate.tween(doors, 1, {y:175}).ease(Quad.easeOut);
+				Actuate.tween(hideo, 1, {y:245}).ease(Quad.easeOut);
+				Actuate.tween(lu, 1, {y:245}).ease(Quad.easeOut);
+				Actuate.tween(elevatorBox, 1, {y:40}).ease(Quad.easeOut).onComplete(doors.openDoor);
+				
 			}
 			default:
 				

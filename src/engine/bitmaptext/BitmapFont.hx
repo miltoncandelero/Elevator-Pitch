@@ -32,7 +32,6 @@ class BitmapFont
 			charArray.push(tmp);
 		}
 		
-	trace (charArray);
 			
 		lineHeight = Std.parseInt(X.node.font.node.common.att.lineHeight);
 	}

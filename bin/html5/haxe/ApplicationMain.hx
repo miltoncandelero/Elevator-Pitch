@@ -24,7 +24,7 @@ import haxe.macro.Expr;
 		
 		var config = {
 			
-			build: "149",
+			build: "186",
 			company: "Elemental Code",
 			file: "ElevatorPitch",
 			fps: 60,
@@ -50,7 +50,7 @@ import haxe.macro.Expr;
 					maximized: false,
 					minimized: false,
 					parameters: {},
-					resizable: false,
+					resizable: true,
 					stencilBuffer: true,
 					title: "Elevator Pitch",
 					vsync: false,
@@ -216,7 +216,39 @@ import haxe.macro.Expr;
 	macro public static function getPreloader () {
 		
 		
-		return macro { new openfl.display.Preloader (new openfl.display.Preloader.DefaultPreloader ()); };
+		var type = Context.getType ("CustomPreloader");
+		
+		switch (type) {
+			
+			case TInst (classType, _):
+				
+				var searchTypes = classType.get ();
+				
+				while (searchTypes != null) {
+					
+					if (searchTypes.pack.length == 2 && searchTypes.pack[0] == "openfl" && searchTypes.pack[1] == "display" && searchTypes.name == "Preloader") {
+						
+						return macro { new CustomPreloader (); };
+						
+					}
+					
+					if (searchTypes.superClass != null) {
+						
+						searchTypes = searchTypes.superClass.t.get ();
+						
+					} else {
+						
+						searchTypes = null;
+						
+					}
+					
+				}
+			
+			default:
+			
+		}
+		
+		return macro { new openfl.display.Preloader (new CustomPreloader ()); }
 		
 		
 	}

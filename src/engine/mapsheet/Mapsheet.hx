@@ -62,8 +62,6 @@ class Mapsheet extends Tileset {
 			}
 		}
 		
-		trace (frames.length);
-		
 	}
 	
 	
