@@ -1,47 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	
-	<meta charset="utf-8">
-	
-	<title>Elevator Pitch</title>
-	
-	<meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	
-	
-	<link rel="shortcut icon" type="image/png" href="./favicon.png">
-	
-	
-	<script type="text/javascript" src="./lib/howler.min.js"></script>
-	<script type="text/javascript" src="./lib/pako.min.js"></script>
-	<script type="text/javascript" src="./lib/FileSaver.min.js"></script>
-	<script type="text/javascript" src="./ElevatorPitch.js"></script>
-	
-	<script>
-		window.addEventListener ("touchmove", function (event) { event.preventDefault (); }, false);
-		if (typeof window.devicePixelRatio != 'undefined' && window.devicePixelRatio > 2) {
-			var meta = document.getElementById ("viewport");
-			meta.setAttribute ('content', 'width=device-width, initial-scale=' + (2 / window.devicePixelRatio) + ', user-scalable=no');
-		}
-	</script>
-	
-	<style>
-		html,body { margin: 0; padding: 0; height: 100%; overflow: hidden; }
-		#openfl-content { background: #000000; width: 100%; height: 100%; }
-
-	</style>
-	
-</head>
-<body>
-	
-	<noscript>This webpage makes extensive use of JavaScript. Please enable JavaScript in your web browser to view this page.</noscript>
-	
-	<div id="openfl-content"></div>
-	
-	<script type="text/javascript">
-		lime.embed ("ElevatorPitch", "openfl-content", 540, 960, { parameters: {} });
-	</script>
-	
-</body>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <main>
+      <h2>Elevator Pitch</h2>
+      <section class="bio-section">
+        <h4>The game</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </section>
+      <section class="video-section">
+        <h4>You know the rules <small>so do I</small></h4>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </section>
+      <section class="premios-section">
+        <h4>The Team</h4>
+        <div class="team-grid">
+          <div class="team-item">
+            <div class="img-avatar-luli"></div>
+            <div class="description-text">
+              <p>Luciana Cacik</p>
+              <p>Pixel Art Goddess</p>
+              <p>@nolucacik</p>
+            </div>
+          </div>
+          <div class="team-item">
+            <div class="img-avatar-milton"></div>
+            <div class="description-text">
+              <p>Milton Candelero</p>
+              <p>Sleepless Coder</p>
+              <p>@miltoncandelero</p>
+            </div>
+          </div>
+          <div class="team-item">
+            <div class="img-avatar-juan"></div>
+            <div class="description-text">
+              <p>Juan Cruz</p>
+              <p>AlMighty Backend guy</p>
+              <p>@Malows</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+      <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </footer>
+  </body>
 </html>
