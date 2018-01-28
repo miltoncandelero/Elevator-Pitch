@@ -9,6 +9,7 @@ import engine.mapsheet.data.Behavior;
 import game.DoorAnimation;
 import game.VerticalRangeBar;
 import motion.Actuate;
+import motion.easing.Elastic;
 import motion.easing.Quad;
 import motion.easing.Linear;
 import openfl.Assets;
@@ -71,7 +72,9 @@ class ElevatorGame extends Sprite
 		font = new BitmapFont(Assets.getBitmapData("fonts/visitor.png"), Assets.getText("fonts/visitor.xml"));
 		
 		//testing...
-		addChild(new Bitmap(Assets.getBitmapData("img/test.jpg")));
+		emergencyBG = new Bitmap(Assets.getBitmapData("img/dummyBGforBugs.png"));
+		emergencyBG.y = -Main.HEIGHT;
+		addChild(emergencyBG);
 		
 		//lazy stupidly long bg.
 		lazybg = new Bitmap(Assets.getBitmapData("img/bg.png"));
@@ -126,7 +129,7 @@ class ElevatorGame extends Sprite
 		hideoSheet.addBehavior(new Behavior("idle", [0], true));
 		hideoSheet.addBehavior(new Behavior("good", [0,0,0,0, 1,0], false, 10));
 		hideoSheet.addBehavior(new Behavior("meh", [0,0,0,5, 6, 7], false, 10));
-		hideoSheet.addBehavior(new Behavior("bad", [0,0,10,10,10,10,10,10,10],false,10));
+		hideoSheet.addBehavior(new Behavior("bad", [0,0,10,11,12,12,12,12,12],false,10));
 		hideoSheet.addBehavior(new Behavior("suicide", [0,0,15,16,17,18,19,0],false,7));
 		
 		hideo = new Animation(hideoSheet);
@@ -182,12 +185,14 @@ class ElevatorGame extends Sprite
 		helpDialog = new HelpScreen();
 		//helpDialog.y = -helpDialog.height;
 		helpDialog.y = -helpDialog.height;
+		helpDialog.x = 20;
 		addChild(helpDialog);
-		Actuate.tween(helpDialog, 1.5, {y: -Main.HEIGHT / 5 }).ease(Quad.easeOut).onComplete(function () {state = "HELP"; });
+		Actuate.tween(helpDialog, 1, {y: 115 }).ease(Elastic.easeOut).onComplete(function () {state = "HELP"; });
 
 	}
 	
 	var aboutDialog:AboutScreen;
+	var emergencyBG:Bitmap;
 	
 	function goAbout(e:MouseEvent):Void 
 	{
@@ -195,10 +200,10 @@ class ElevatorGame extends Sprite
 		trace ("going about");
 		state = "ANIMATING";
 		aboutDialog = new AboutScreen();
-		//aboutDialog.y = -aboutDialog.height;
-		aboutDialog.y = Main.HEIGHT;
+		aboutDialog.y = -aboutDialog.height;
+		aboutDialog.x = 20;
 		addChild(aboutDialog);
-		Actuate.tween(aboutDialog, 1.5, {y: -Main.HEIGHT / 5 }).ease(Quad.easeOut).onComplete(function () {state = "ABOUT"; });
+		Actuate.tween(aboutDialog, 1, {y: 115 }).ease(Elastic.easeOut).onComplete(function () {state = "ABOUT"; });
 		
 	}
 	
@@ -289,6 +294,7 @@ class ElevatorGame extends Sprite
 				if (btnAbout.hitTestPoint(mouseX, mouseY) || btnHelp.hitTestPoint(mouseX, mouseY)) return;
 				
 				state = "ANIMATING"; //inexistent state
+				cursor.reset();
 				Actuate.tween(bar , 0.5, {x : 420}).ease(Linear.easeNone);
 				Actuate.tween(cursor , 0.5, {x : 405}).ease(Linear.easeNone);
 				Actuate.tween(btnAbout, 0.5, {y: -100}).ease(Linear.easeNone);
@@ -323,18 +329,19 @@ class ElevatorGame extends Sprite
 				lu.showBehavior("idle");
 				lu.y = 245 +350 + 570;
 				doors.y = 175 +350 + 570;
-				removeChild(txt);
 				
-				Actuate.tween(scoreCart, 1.5, {y:Main.HEIGHT}).ease(Quad.easeOut).onComplete(function () {removeChild(scoreCart); tweenToMenustate(); });
+				Actuate.tween(scoreCart, 1, {y:Main.HEIGHT}).ease(Elastic.easeIn).onComplete(function () {removeChild(scoreCart); tweenToMenustate(); });
 				
 			}
 			case "ABOUT":{
-				Actuate.tween(aboutDialog, 1.5, {y:Main.HEIGHT}).ease(Quad.easeOut).onComplete(function () {removeChild(aboutDialog); state = "MENU"; });
+				state = "ANIMATING";
+				Actuate.tween(aboutDialog, 1, {y:-aboutDialog.height}).ease(Elastic.easeIn).onComplete(function () {removeChild(aboutDialog); state = "MENU"; });
 				//exit and then go to play state.
 			}
 			
 			case "HELP":{
-				Actuate.tween(helpDialog, 1.5, {y:-helpDialog.height}).ease(Quad.easeOut).onComplete(function () {removeChild(helpDialog); state = "MENU"; });
+				state = "ANIMATING";
+				Actuate.tween(helpDialog, 1, {y:-helpDialog.height}).ease(Elastic.easeIn).onComplete(function () {removeChild(helpDialog); state = "MENU"; });
 				//exit and then go to play state.
 			}
 			default:
@@ -352,18 +359,19 @@ class ElevatorGame extends Sprite
 		
 		state = "ANIMATING";
 		//end position.
-		doors.closeDoor();
+		Actuate.timer(0.1).onComplete(doors.closeDoor);
 		Actuate.tween(doors, 1, {y:175-570}).ease(Quad.easeOut);
 		Actuate.tween(lu, 1, {y:245-570}).ease(Quad.easeOut);
 		Actuate.tween(elevatorBox, 1, {y:40 -570}).ease(Quad.easeOut);
 		Actuate.tween(bar , 0.5, {x : 420+140}).ease(Linear.easeNone);
 		Actuate.tween(cursor , 0.5, {x : 405 + 140}).ease(Linear.easeNone);
+						removeChild(txt);
 		
 		scoreCart = new ScoreScreen(score);
 		scoreCart.y = Main.HEIGHT;
 		addChild(scoreCart);
-		
-		Actuate.tween(scoreCart, 1.5, {y: -Main.HEIGHT / 5 }).ease(Quad.easeOut).delay(1).onComplete(function () {state = "GAMEOVER"; });
+		scoreCart.x = 20;
+		Actuate.tween(scoreCart, 1, {y: 115 }).ease(Elastic.easeOut).delay(1).onComplete(function () {state = "GAMEOVER"; });
 		
 		
 		//bring the score screen.
@@ -383,11 +391,18 @@ class ElevatorGame extends Sprite
 		hideo.update(dt);
 		lu.update(dt);
 		
+		//about
+		if (aboutDialog != null) aboutDialog.update(dt);
+		
 		switch (state) 
 		{
 			case "GAME":
 				cursor.update(dt);
-				
+				emergencyBG.y += dt * 0.5;
+				if (emergencyBG.y >=0) 
+				{
+					emergencyBG.y = -944;
+				}
 			default:
 				
 		}

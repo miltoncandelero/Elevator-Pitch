@@ -1042,7 +1042,7 @@ $hxClasses["ApplicationMain"] = ApplicationMain;
 ApplicationMain.__name__ = ["ApplicationMain"];
 ApplicationMain.main = function() {
 	var projectName = "ElevatorPitch";
-	var config = { build : "291", company : "Elemental Code", file : "ElevatorPitch", fps : 60, name : "Elevator Pitch", orientation : "", packageName : "elevatorpitch.ggj.elementalcode", version : "1.0.0", windows : [{ allowHighDPI : false, alwaysOnTop : false, antialiasing : 0, background : 0, borderless : false, colorDepth : 16, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 960, hidden : false, maximized : false, minimized : false, parameters : { }, resizable : true, stencilBuffer : true, title : "Elevator Pitch", vsync : false, width : 540, x : null, y : null}]};
+	var config = { build : "318", company : "Elemental Code", file : "ElevatorPitch", fps : 60, name : "Elevator Pitch", orientation : "", packageName : "elevatorpitch.ggj.elementalcode", version : "1.0.0", windows : [{ allowHighDPI : false, alwaysOnTop : false, antialiasing : 0, background : 0, borderless : false, colorDepth : 16, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 960, hidden : false, maximized : false, minimized : false, parameters : { }, resizable : true, stencilBuffer : true, title : "Elevator Pitch", vsync : false, width : 540, x : null, y : null}]};
 	lime_system_System.__registerEntryPoint(projectName,ApplicationMain.create,config);
 };
 ApplicationMain.create = function(config) {
@@ -5808,7 +5808,7 @@ ManifestResources.init = function(config) {
 	var data;
 	var manifest;
 	var library;
-	data = "{\"name\":null,\"assets\":\"aoy4:pathy12:img%2Fbg.pngy4:sizei58102y4:typey5:IMAGEy2:idR1y7:preloadtgoR0y18:img%2FbtnAbout.pngR2i3113R3R4R5R7R6tgoR0y17:img%2FbtnHelp.pngR2i3139R3R4R5R8R6tgoR0y18:img%2FbtnScore.pngR2i3161R3R4R5R9R6tgoR0y28:img%2FcreditsMockupBoard.pngR2i77884R3R4R5R10R6tgoR0y18:img%2FdoorLeft.pngR2i18056R3R4R5R11R6tgoR0y19:img%2FdoorRight.pngR2i18002R3R4R5R12R6tgoR0y19:img%2Fdoorsmask.pngR2i2918R3R4R5R13R6tgoR0y21:img%2FelevatorBox.pngR2i19127R3R4R5R14R6tgoR0y26:img%2FelevatorBoxWired.pngR2i43684R3R4R5R15R6tgoR0y23:img%2FelevatorCable.pngR2i6193R3R4R5R16R6tgoR0y18:img%2Fgaugetap.pngR2i2816R3R4R5R17R6tgoR0y15:img%2Fhideo.pngR2i13955R3R4R5R18R6tgoR0y16:img%2Fhideo2.pngR2i235770R3R4R5R19R6tgoR0y12:img%2Flu.pngR2i10882R3R4R5R20R6tgoR0y20:img%2FpopupBoard.pngR2i24689R3R4R5R21R6tgoR0y20:img%2FpopupBoard.psdR2i748759R3y6:BINARYR5R22R6tgoR0y25:img%2FpopupHelpMockup.pngR2i33172R3R4R5R24R6tgoR0y20:img%2FrustyPipes.pngR2i19056R3R4R5R25R6tgoR0y14:img%2Ftest.jpgR2i51728R3R4R5R26R6tgoR0y23:img%2FverticalGauge.pngR2i18661R3R4R5R27R6tgoR0y19:fonts%2Fvisitor.pngR2i3962R3R4R5R28R6tgoR0y19:fonts%2Fvisitor.xmlR2i10509R3y4:TEXTR5R29R6tgoR2i15528R3y5:SOUNDR5y16:audio%2Fcoin.wavy9:pathGroupaR32hR6tgoR2i139284R3R31R5y16:audio%2Ffall.wavR33aR34hR6tgoR2i6068R3R31R5y16:audio%2Fhurt.wavR33aR35hR6tgoR0y34:assets%2Fpreloader%2Fpreloader.jpgR2i71312R3R4R5R36R6tgh\",\"version\":2,\"libraryArgs\":[],\"libraryType\":null}";
+	data = "{\"name\":null,\"assets\":\"aoy4:pathy12:img%2Fbg.pngy4:sizei58102y4:typey5:IMAGEy2:idR1y7:preloadtgoR0y15:img%2Fboard.pngR2i20233R3R4R5R7R6tgoR0y18:img%2FbtnAbout.pngR2i3113R3R4R5R8R6tgoR0y17:img%2FbtnHelp.pngR2i3139R3R4R5R9R6tgoR0y18:img%2FbtnScore.pngR2i3161R3R4R5R10R6tgoR0y17:img%2Fcredits.pngR2i11212R3R4R5R11R6tgoR0y28:img%2FcreditsMockupBoard.pngR2i77884R3R4R5R12R6tgoR0y18:img%2FdoorLeft.pngR2i18056R3R4R5R13R6tgoR0y19:img%2FdoorRight.pngR2i18002R3R4R5R14R6tgoR0y19:img%2Fdoorsmask.pngR2i2918R3R4R5R15R6tgoR0y24:img%2FdummyBGforBugs.pngR2i119971R3R4R5R16R6tgoR0y21:img%2FelevatorBox.pngR2i19127R3R4R5R17R6tgoR0y26:img%2FelevatorBoxWired.pngR2i43684R3R4R5R18R6tgoR0y23:img%2FelevatorCable.pngR2i6193R3R4R5R19R6tgoR0y18:img%2Fgaugetap.pngR2i2816R3R4R5R20R6tgoR0y15:img%2Fhideo.pngR2i14444R3R4R5R21R6tgoR0y12:img%2Flu.pngR2i10882R3R4R5R22R6tgoR0y20:img%2FpopupBoard.pngR2i24689R3R4R5R23R6tgoR0y20:img%2FpopupBoard.psdR2i748759R3y6:BINARYR5R24R6tgoR0y25:img%2FpopupHelpMockup.pngR2i33172R3R4R5R26R6tgoR0y19:img%2Fpreloader.jpgR2i71312R3R4R5R27R6tgoR0y20:img%2FrustyPipes.pngR2i28429R3R4R5R28R6tgoR0y14:img%2Ftest.jpgR2i51728R3R4R5R29R6tgoR0y23:img%2FverticalGauge.pngR2i18661R3R4R5R30R6tgoR0y19:fonts%2Fvisitor.pngR2i3962R3R4R5R31R6tgoR0y19:fonts%2Fvisitor.xmlR2i10509R3y4:TEXTR5R32R6tgoR2i15528R3y5:SOUNDR5y16:audio%2Fcoin.wavy9:pathGroupaR35hR6tgoR2i139284R3R34R5y16:audio%2Ffall.wavR36aR37hR6tgoR2i6068R3R34R5y16:audio%2Fhurt.wavR36aR38hR6tgoR0y34:assets%2Fpreloader%2Fpreloader.jpgR2i71312R3R4R5R39R6tgh\",\"version\":2,\"libraryArgs\":[],\"libraryType\":null}";
 	manifest = lime_utils_AssetManifest.parse(data,rootPath);
 	library = lime_utils_AssetLibrary.fromManifest(manifest);
 	lime_utils_Assets.registerLibrary("default",library);
@@ -6872,13 +6872,23 @@ engine_mapsheet_data_Frame.prototype = {
 };
 var game_AboutScreen = function() {
 	openfl_display_Sprite.call(this);
-	this.addChild(new openfl_display_Bitmap(openfl_utils_Assets.getBitmapData("img/creditsMockupBoard.png")));
+	this.addChild(new openfl_display_Bitmap(openfl_utils_Assets.getBitmapData("img/board.png")));
+	var luSheet = new engine_mapsheet_Mapsheet(openfl_utils_Assets.getBitmapData("img/credits.png"));
+	luSheet.slice(5,4);
+	luSheet.addBehavior(new engine_mapsheet_data_Behavior("idle",[0,1],true,10));
+	this.lu = new engine_mapsheet_Animation(luSheet);
+	this.lu.showBehavior("idle");
+	this.addChild(this.lu);
 };
 $hxClasses["game.AboutScreen"] = game_AboutScreen;
 game_AboutScreen.__name__ = ["game","AboutScreen"];
 game_AboutScreen.__super__ = openfl_display_Sprite;
 game_AboutScreen.prototype = $extend(openfl_display_Sprite.prototype,{
-	__class__: game_AboutScreen
+	lu: null
+	,update: function(dt) {
+		this.lu.update(dt);
+	}
+	,__class__: game_AboutScreen
 });
 var game_DoorAnimation = function() {
 	openfl_display_Sprite.call(this);
@@ -6941,7 +6951,9 @@ var game_ElevatorGame = function() {
 	this.addEventListener("mouseDown",$bind(this,this.onClick));
 	this.addEventListener("enterFrame",$bind(this,this.update));
 	game_ElevatorGame.font = new engine_bitmaptext_BitmapFont(openfl_utils_Assets.getBitmapData("fonts/visitor.png"),openfl_utils_Assets.getText("fonts/visitor.xml"));
-	this.addChild(new openfl_display_Bitmap(openfl_utils_Assets.getBitmapData("img/test.jpg")));
+	this.emergencyBG = new openfl_display_Bitmap(openfl_utils_Assets.getBitmapData("img/dummyBGforBugs.png"));
+	this.emergencyBG.set_y(-960);
+	this.addChild(this.emergencyBG);
 	this.lazybg = new openfl_display_Bitmap(openfl_utils_Assets.getBitmapData("img/bg.png"));
 	this.lazybg.set_y(-this.lazybg.get_height() + 960);
 	this.addChild(this.lazybg);
@@ -6974,7 +6986,7 @@ var game_ElevatorGame = function() {
 	hideoSheet.addBehavior(new engine_mapsheet_data_Behavior("idle",[0],true));
 	hideoSheet.addBehavior(new engine_mapsheet_data_Behavior("good",[0,0,0,0,1,0],false,10));
 	hideoSheet.addBehavior(new engine_mapsheet_data_Behavior("meh",[0,0,0,5,6,7],false,10));
-	hideoSheet.addBehavior(new engine_mapsheet_data_Behavior("bad",[0,0,10,10,10,10,10,10,10],false,10));
+	hideoSheet.addBehavior(new engine_mapsheet_data_Behavior("bad",[0,0,10,11,12,12,12,12,12],false,10));
 	hideoSheet.addBehavior(new engine_mapsheet_data_Behavior("suicide",[0,0,15,16,17,18,19,0],false,7));
 	this.hideo = new engine_mapsheet_Animation(hideoSheet);
 	this.hideo.showBehavior("idle");
@@ -7038,27 +7050,30 @@ game_ElevatorGame.prototype = $extend(openfl_display_Sprite.prototype,{
 		if(this.state != "MENU") {
 			return;
 		}
-		haxe_Log.trace("going help",{ fileName : "ElevatorGame.hx", lineNumber : 180, className : "game.ElevatorGame", methodName : "goHelp"});
+		haxe_Log.trace("going help",{ fileName : "ElevatorGame.hx", lineNumber : 183, className : "game.ElevatorGame", methodName : "goHelp"});
 		this.state = "ANIMATING";
 		this.helpDialog = new game_HelpScreen();
 		this.helpDialog.set_y(-this.helpDialog.get_height());
+		this.helpDialog.set_x(20);
 		this.addChild(this.helpDialog);
-		motion_Actuate.tween(this.helpDialog,1.5,{ y : -192.}).ease(motion_easing_Quad.get_easeOut()).onComplete(function() {
+		motion_Actuate.tween(this.helpDialog,1,{ y : 115}).ease(motion_easing_Elastic.get_easeOut()).onComplete(function() {
 			_gthis.state = "HELP";
 		});
 	}
 	,aboutDialog: null
+	,emergencyBG: null
 	,goAbout: function(e) {
 		var _gthis = this;
 		if(this.state != "MENU") {
 			return;
 		}
-		haxe_Log.trace("going about",{ fileName : "ElevatorGame.hx", lineNumber : 195, className : "game.ElevatorGame", methodName : "goAbout"});
+		haxe_Log.trace("going about",{ fileName : "ElevatorGame.hx", lineNumber : 200, className : "game.ElevatorGame", methodName : "goAbout"});
 		this.state = "ANIMATING";
 		this.aboutDialog = new game_AboutScreen();
-		this.aboutDialog.set_y(960);
+		this.aboutDialog.set_y(-this.aboutDialog.get_height());
+		this.aboutDialog.set_x(20);
 		this.addChild(this.aboutDialog);
-		motion_Actuate.tween(this.aboutDialog,1.5,{ y : -192.}).ease(motion_easing_Quad.get_easeOut()).onComplete(function() {
+		motion_Actuate.tween(this.aboutDialog,1,{ y : 115}).ease(motion_easing_Elastic.get_easeOut()).onComplete(function() {
 			_gthis.state = "ABOUT";
 		});
 	}
@@ -7079,7 +7094,8 @@ game_ElevatorGame.prototype = $extend(openfl_display_Sprite.prototype,{
 		var _g = this.state;
 		switch(_g) {
 		case "ABOUT":
-			motion_Actuate.tween(this.aboutDialog,1.5,{ y : 960}).ease(motion_easing_Quad.get_easeOut()).onComplete(function() {
+			this.state = "ANIMATING";
+			motion_Actuate.tween(this.aboutDialog,1,{ y : -this.aboutDialog.get_height()}).ease(motion_easing_Elastic.get_easeIn()).onComplete(function() {
 				_gthis.removeChild(_gthis.aboutDialog);
 				_gthis.state = "MENU";
 			});
@@ -7147,14 +7163,14 @@ game_ElevatorGame.prototype = $extend(openfl_display_Sprite.prototype,{
 			this.lu.showBehavior("idle");
 			this.lu.set_y(1165);
 			this.doors.set_y(1095);
-			this.removeChild(this.txt);
-			motion_Actuate.tween(this.scoreCart,1.5,{ y : 960}).ease(motion_easing_Quad.get_easeOut()).onComplete(function() {
+			motion_Actuate.tween(this.scoreCart,1,{ y : 960}).ease(motion_easing_Elastic.get_easeIn()).onComplete(function() {
 				_gthis.removeChild(_gthis.scoreCart);
 				_gthis.tweenToMenustate();
 			});
 			break;
 		case "HELP":
-			motion_Actuate.tween(this.helpDialog,1.5,{ y : -this.helpDialog.get_height()}).ease(motion_easing_Quad.get_easeOut()).onComplete(function() {
+			this.state = "ANIMATING";
+			motion_Actuate.tween(this.helpDialog,1,{ y : -this.helpDialog.get_height()}).ease(motion_easing_Elastic.get_easeIn()).onComplete(function() {
 				_gthis.removeChild(_gthis.helpDialog);
 				_gthis.state = "MENU";
 			});
@@ -7164,6 +7180,7 @@ game_ElevatorGame.prototype = $extend(openfl_display_Sprite.prototype,{
 				return;
 			}
 			this.state = "ANIMATING";
+			this.cursor.reset();
 			motion_Actuate.tween(this.bar,0.5,{ x : 420}).ease(motion_easing_Linear.get_easeNone());
 			motion_Actuate.tween(this.cursor,0.5,{ x : 405}).ease(motion_easing_Linear.get_easeNone());
 			motion_Actuate.tween(this.btnAbout,0.5,{ y : -100}).ease(motion_easing_Linear.get_easeNone());
@@ -7185,7 +7202,7 @@ game_ElevatorGame.prototype = $extend(openfl_display_Sprite.prototype,{
 	,endGame: function() {
 		var _gthis = this;
 		motion_Actuate.stop(this.lazybg,null,false,false);
-		haxe_Log.trace("gaming over. state: " + this.state,{ fileName : "ElevatorGame.hx", lineNumber : 348, className : "game.ElevatorGame", methodName : "endGame"});
+		haxe_Log.trace("gaming over. state: " + this.state,{ fileName : "ElevatorGame.hx", lineNumber : 355, className : "game.ElevatorGame", methodName : "endGame"});
 		if(this.state != "GAME" && this.state != "SUICIDE") {
 			return;
 		}
@@ -7193,16 +7210,18 @@ game_ElevatorGame.prototype = $extend(openfl_display_Sprite.prototype,{
 			motion_Actuate.tween(this.hideo,1,{ y : -325}).ease(motion_easing_Quad.get_easeOut());
 		}
 		this.state = "ANIMATING";
-		this.doors.closeDoor();
+		motion_Actuate.timer(0.1).onComplete(($_=this.doors,$bind($_,$_.closeDoor)));
 		motion_Actuate.tween(this.doors,1,{ y : -395}).ease(motion_easing_Quad.get_easeOut());
 		motion_Actuate.tween(this.lu,1,{ y : -325}).ease(motion_easing_Quad.get_easeOut());
 		motion_Actuate.tween(this.elevatorBox,1,{ y : -530}).ease(motion_easing_Quad.get_easeOut());
 		motion_Actuate.tween(this.bar,0.5,{ x : 560}).ease(motion_easing_Linear.get_easeNone());
 		motion_Actuate.tween(this.cursor,0.5,{ x : 545}).ease(motion_easing_Linear.get_easeNone());
+		this.removeChild(this.txt);
 		this.scoreCart = new game_ScoreScreen(this.score);
 		this.scoreCart.set_y(960);
 		this.addChild(this.scoreCart);
-		motion_Actuate.tween(this.scoreCart,1.5,{ y : -192.}).ease(motion_easing_Quad.get_easeOut()).delay(1).onComplete(function() {
+		this.scoreCart.set_x(20);
+		motion_Actuate.tween(this.scoreCart,1,{ y : 115}).ease(motion_easing_Elastic.get_easeOut()).delay(1).onComplete(function() {
 			_gthis.state = "GAMEOVER";
 		});
 	}
@@ -7212,16 +7231,24 @@ game_ElevatorGame.prototype = $extend(openfl_display_Sprite.prototype,{
 		this.previousTime = this.currentTime;
 		this.hideo.update(game_ElevatorGame.dt);
 		this.lu.update(game_ElevatorGame.dt);
+		if(this.aboutDialog != null) {
+			this.aboutDialog.update(game_ElevatorGame.dt);
+		}
 		var _g = this.state;
 		if(_g == "GAME") {
 			this.cursor.update(game_ElevatorGame.dt);
+			var _g1 = this.emergencyBG;
+			_g1.set_y(_g1.get_y() + game_ElevatorGame.dt * 0.5);
+			if(this.emergencyBG.get_y() >= 0) {
+				this.emergencyBG.set_y(-944);
+			}
 		}
 	}
 	,__class__: game_ElevatorGame
 });
 var game_HelpScreen = function() {
 	openfl_display_Sprite.call(this);
-	this.addChild(new openfl_display_Bitmap(openfl_utils_Assets.getBitmapData("img/popupHelpMockup.png")));
+	this.addChild(new openfl_display_Bitmap(openfl_utils_Assets.getBitmapData("img/board.png")));
 };
 $hxClasses["game.HelpScreen"] = game_HelpScreen;
 game_HelpScreen.__name__ = ["game","HelpScreen"];
@@ -7231,19 +7258,19 @@ game_HelpScreen.prototype = $extend(openfl_display_Sprite.prototype,{
 });
 var game_ScoreScreen = function(iScore) {
 	openfl_display_Sprite.call(this);
-	this.addChild(new openfl_display_Bitmap(openfl_utils_Assets.getBitmapData("img/popupBoard.png")));
+	this.addChild(new openfl_display_Bitmap(openfl_utils_Assets.getBitmapData("img/board.png")));
 	var txtGameOver = new engine_bitmaptext_BitmapText(game_ElevatorGame.font,"GAME\nOVER",540,72,4);
 	txtGameOver.set_scaleX(txtGameOver.set_scaleY(2));
-	txtGameOver.set_x(93);
-	txtGameOver.set_y(570);
+	txtGameOver.set_x(101);
+	txtGameOver.set_y(105);
 	this.addChild(txtGameOver);
 	var txtScore = new engine_bitmaptext_BitmapText(game_ElevatorGame.font,"score",540,36,4);
-	txtScore.set_x(145);
-	txtScore.set_y(710);
+	txtScore.set_x(153);
+	txtScore.set_y(260);
 	this.addChild(txtScore);
 	var txtScoreNumber = new engine_bitmaptext_BitmapText(game_ElevatorGame.font,iScore < 10 && iScore > -1 ? " " + (iScore == null ? "null" : "" + iScore) : iScore == null ? "null" : "" + iScore,540,36,4);
 	txtScoreNumber.set_scaleX(txtScoreNumber.set_scaleY(4));
-	txtScoreNumber.set_x(100);
+	txtScoreNumber.set_x(108);
 	if(iScore > 9 && iScore < 20) {
 		var _g = txtScoreNumber;
 		_g.set_x(_g.get_x() + 15);
@@ -7256,7 +7283,7 @@ var game_ScoreScreen = function(iScore) {
 		var _g2 = txtScoreNumber;
 		_g2.set_x(_g2.get_x() + 37);
 	}
-	txtScoreNumber.set_y(800);
+	txtScoreNumber.set_y(350);
 	this.addChild(txtScoreNumber);
 };
 $hxClasses["game.ScoreScreen"] = game_ScoreScreen;
@@ -7321,6 +7348,11 @@ game_VerticalMovingCursor.prototype = $extend(openfl_display_Sprite.prototype,{
 		this.get_graphics().drawRect(0,0,135,20);
 		this.get_graphics().endFill();
 		this.canTap = true;
+	}
+	,reset: function() {
+		this.enableTap();
+		this.speed = 0.6;
+		this.isGoingUp = false;
 	}
 	,__class__: game_VerticalMovingCursor
 });
@@ -34433,7 +34465,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 939298;
+	this.version = 423815;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = ["lime","utils","AssetCache"];
@@ -38454,6 +38486,153 @@ motion_actuators_TransformActuator.prototype = $extend(motion_actuators_SimpleAc
 	}
 	,__class__: motion_actuators_TransformActuator
 });
+var motion_easing_Elastic = function() { };
+$hxClasses["motion.easing.Elastic"] = motion_easing_Elastic;
+motion_easing_Elastic.__name__ = ["motion","easing","Elastic"];
+motion_easing_Elastic.__properties__ = {get_easeOut:"get_easeOut",get_easeInOut:"get_easeInOut",get_easeIn:"get_easeIn"};
+motion_easing_Elastic.get_easeIn = function() {
+	return new motion_easing_ElasticEaseIn(0.1,0.4);
+};
+motion_easing_Elastic.get_easeInOut = function() {
+	return new motion_easing_ElasticEaseInOut(0.1,0.4);
+};
+motion_easing_Elastic.get_easeOut = function() {
+	return new motion_easing_ElasticEaseOut(0.1,0.4);
+};
+var motion_easing_ElasticEaseIn = function(a,p) {
+	this.a = a;
+	this.p = p;
+};
+$hxClasses["motion.easing.ElasticEaseIn"] = motion_easing_ElasticEaseIn;
+motion_easing_ElasticEaseIn.__name__ = ["motion","easing","ElasticEaseIn"];
+motion_easing_ElasticEaseIn.__interfaces__ = [motion_easing_IEasing];
+motion_easing_ElasticEaseIn.prototype = {
+	a: null
+	,p: null
+	,calculate: function(k) {
+		if(k == 0) {
+			return 0;
+		}
+		if(k == 1) {
+			return 1;
+		}
+		var s;
+		if(this.a < 1) {
+			this.a = 1;
+			s = this.p / 4;
+		} else {
+			s = this.p / (2 * Math.PI) * Math.asin(1 / this.a);
+		}
+		return -(this.a * Math.pow(2,10 * --k) * Math.sin((k - s) * (2 * Math.PI) / this.p));
+	}
+	,ease: function(t,b,c,d) {
+		if(t == 0) {
+			return b;
+		}
+		if((t /= d) == 1) {
+			return b + c;
+		}
+		var s;
+		if(this.a < Math.abs(c)) {
+			this.a = c;
+			s = this.p / 4;
+		} else {
+			s = this.p / (2 * Math.PI) * Math.asin(c / this.a);
+		}
+		return -(this.a * Math.pow(2,10 * --t) * Math.sin((t * d - s) * (2 * Math.PI) / this.p)) + b;
+	}
+	,__class__: motion_easing_ElasticEaseIn
+};
+var motion_easing_ElasticEaseInOut = function(a,p) {
+	this.a = a;
+	this.p = p;
+};
+$hxClasses["motion.easing.ElasticEaseInOut"] = motion_easing_ElasticEaseInOut;
+motion_easing_ElasticEaseInOut.__name__ = ["motion","easing","ElasticEaseInOut"];
+motion_easing_ElasticEaseInOut.__interfaces__ = [motion_easing_IEasing];
+motion_easing_ElasticEaseInOut.prototype = {
+	a: null
+	,p: null
+	,calculate: function(k) {
+		if(k == 0) {
+			return 0;
+		}
+		if((k /= 0.5) == 2) {
+			return 1;
+		}
+		var p = 0.44999999999999996;
+		var a = 1;
+		var s = p / 4;
+		if(k < 1) {
+			return -0.5 * (Math.pow(2,10 * --k) * Math.sin((k - s) * (2 * Math.PI) / p));
+		}
+		return Math.pow(2,-10 * --k) * Math.sin((k - s) * (2 * Math.PI) / p) * 0.5 + 1;
+	}
+	,ease: function(t,b,c,d) {
+		if(t == 0) {
+			return b;
+		}
+		if((t /= d / 2) == 2) {
+			return b + c;
+		}
+		var s;
+		if(this.a < Math.abs(c)) {
+			this.a = c;
+			s = this.p / 4;
+		} else {
+			s = this.p / (2 * Math.PI) * Math.asin(c / this.a);
+		}
+		if(t < 1) {
+			return -0.5 * (this.a * Math.pow(2,10 * --t) * Math.sin((t * d - s) * (2 * Math.PI) / this.p)) + b;
+		}
+		return this.a * Math.pow(2,-10 * --t) * Math.sin((t * d - s) * (2 * Math.PI) / this.p) * 0.5 + c + b;
+	}
+	,__class__: motion_easing_ElasticEaseInOut
+};
+var motion_easing_ElasticEaseOut = function(a,p) {
+	this.a = a;
+	this.p = p;
+};
+$hxClasses["motion.easing.ElasticEaseOut"] = motion_easing_ElasticEaseOut;
+motion_easing_ElasticEaseOut.__name__ = ["motion","easing","ElasticEaseOut"];
+motion_easing_ElasticEaseOut.__interfaces__ = [motion_easing_IEasing];
+motion_easing_ElasticEaseOut.prototype = {
+	a: null
+	,p: null
+	,calculate: function(k) {
+		if(k == 0) {
+			return 0;
+		}
+		if(k == 1) {
+			return 1;
+		}
+		var s;
+		if(this.a < 1) {
+			this.a = 1;
+			s = this.p / 4;
+		} else {
+			s = this.p / (2 * Math.PI) * Math.asin(1 / this.a);
+		}
+		return this.a * Math.pow(2,-10 * k) * Math.sin((k - s) * (2 * Math.PI) / this.p) + 1;
+	}
+	,ease: function(t,b,c,d) {
+		if(t == 0) {
+			return b;
+		}
+		if((t /= d) == 1) {
+			return b + c;
+		}
+		var s;
+		if(this.a < Math.abs(c)) {
+			this.a = c;
+			s = this.p / 4;
+		} else {
+			s = this.p / (2 * Math.PI) * Math.asin(c / this.a);
+		}
+		return this.a * Math.pow(2,-10 * t) * Math.sin((t * d - s) * (2 * Math.PI) / this.p) + c + b;
+	}
+	,__class__: motion_easing_ElasticEaseOut
+};
 var motion_easing_ExpoEaseIn = function() {
 };
 $hxClasses["motion.easing.ExpoEaseIn"] = motion_easing_ExpoEaseIn;

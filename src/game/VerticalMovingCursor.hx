@@ -78,4 +78,11 @@ class VerticalMovingCursor extends Sprite
 		canTap = true;
 	}
 	
+	public function reset() 
+	{
+		enableTap();
+		speed = 0.6;
+		isGoingUp = false;
+	}
+	
 }
