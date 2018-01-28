@@ -1042,7 +1042,7 @@ $hxClasses["ApplicationMain"] = ApplicationMain;
 ApplicationMain.__name__ = ["ApplicationMain"];
 ApplicationMain.main = function() {
 	var projectName = "ElevatorPitch";
-	var config = { build : "68", company : "Elemental Code", file : "ElevatorPitch", fps : 60, name : "Elevator Pitch", orientation : "", packageName : "ElevatorPitch.GGJ.ElementalCode", version : "1.0.0", windows : [{ allowHighDPI : false, alwaysOnTop : false, antialiasing : 0, background : 16711935, borderless : false, colorDepth : 16, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 960, hidden : false, maximized : false, minimized : false, parameters : { }, resizable : true, stencilBuffer : true, title : "Elevator Pitch", vsync : false, width : 540, x : null, y : null}]};
+	var config = { build : "149", company : "Elemental Code", file : "ElevatorPitch", fps : 60, name : "Elevator Pitch", orientation : "", packageName : "elevatorpitch.ggj.elementalcode", version : "1.0.0", windows : [{ allowHighDPI : false, alwaysOnTop : false, antialiasing : 0, background : 16711935, borderless : false, colorDepth : 16, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 960, hidden : false, maximized : false, minimized : false, parameters : { }, resizable : false, stencilBuffer : true, title : "Elevator Pitch", vsync : false, width : 540, x : null, y : null}]};
 	lime_system_System.__registerEntryPoint(projectName,ApplicationMain.create,config);
 };
 ApplicationMain.create = function(config) {
@@ -4143,7 +4143,7 @@ ManifestResources.init = function(config) {
 	var data;
 	var manifest;
 	var library;
-	data = "{\"name\":null,\"assets\":\"aoy4:pathy14:img%2Ftest.jpgy4:sizei51728y4:typey5:IMAGEy2:idR1y7:preloadtgoR0y23:img%2FverticalGauge.pngR2i32628R3R4R5R7R6tgoR0y19:fonts%2Fvisitor.pngR2i3962R3R4R5R8R6tgoR0y19:fonts%2Fvisitor.xmlR2i10509R3y4:TEXTR5R9R6tgoR2i15528R3y5:SOUNDR5y16:audio%2Fcoin.wavy9:pathGroupaR12hR6tgoR2i6068R3R11R5y16:audio%2Fhurt.wavR13aR14hR6tgh\",\"version\":2,\"libraryArgs\":[],\"libraryType\":null}";
+	data = "{\"name\":null,\"assets\":\"aoy4:pathy12:img%2Fbg.pngy4:sizei58102y4:typey5:IMAGEy2:idR1y7:preloadtgoR0y17:img%2Fbgrails.pngR2i19056R3R4R5R7R6tgoR0y15:img%2Fchar2.pngR2i4015R3R4R5R8R6tgoR0y18:img%2FdoorLeft.pngR2i18056R3R4R5R9R6tgoR0y19:img%2FdoorRight.pngR2i18002R3R4R5R10R6tgoR0y19:img%2Fdoorsmask.pngR2i2918R3R4R5R11R6tgoR0y18:img%2Felevator.pngR2i3132R3R4R5R12R6tgoR0y21:img%2FelevatorBox.pngR2i19127R3R4R5R13R6tgoR0y23:img%2FelevatorCable.pngR2i18304R3R4R5R14R6tgoR0y18:img%2Fgaugetap.pngR2i2816R3R4R5R15R6tgoR0y15:img%2Fhideo.pngR2i28410R3R4R5R16R6tgoR0y16:img%2Fhideo2.pngR2i235770R3R4R5R17R6tgoR0y12:img%2Flu.pngR2i24018R3R4R5R18R6tgoR0y14:img%2Ftest.jpgR2i51728R3R4R5R19R6tgoR0y23:img%2FverticalGauge.pngR2i18661R3R4R5R20R6tgoR0y19:fonts%2Fvisitor.pngR2i3962R3R4R5R21R6tgoR0y19:fonts%2Fvisitor.xmlR2i10509R3y4:TEXTR5R22R6tgoR2i15528R3y5:SOUNDR5y16:audio%2Fcoin.wavy9:pathGroupaR25hR6tgoR2i6068R3R24R5y16:audio%2Fhurt.wavR26aR27hR6tgh\",\"version\":2,\"libraryArgs\":[],\"libraryType\":null}";
 	manifest = lime_utils_AssetManifest.parse(data,rootPath);
 	library = lime_utils_AssetLibrary.fromManifest(manifest);
 	lime_utils_Assets.registerLibrary("default",library);
@@ -4825,96 +4825,426 @@ engine_bitmaptext_BitmapText.prototype = $extend(openfl_display_Sprite.prototype
 	,__class__: engine_bitmaptext_BitmapText
 	,__properties__: $extend(openfl_display_Sprite.prototype.__properties__,{set_text:"set_text"})
 });
-var engine_image_Image = function(bitmapData,align,centerAt,smoothing) {
+var engine_mapsheet_Animation = function(sheet,smoothing) {
 	if(smoothing == null) {
-		smoothing = true;
-	}
-	if(align == null) {
-		align = 7;
-	}
-	this.bitmapData = bitmapData;
-	this.bitmap = new openfl_display_Bitmap(bitmapData,null,smoothing);
-	if(centerAt == null) {
-		this.setAlign(align);
-	} else {
-		this.bitmap.set_x(-centerAt.x);
-		this.bitmap.set_y(-centerAt.y);
+		smoothing = false;
 	}
 	openfl_display_Sprite.call(this);
-	this.addChild(this.bitmap);
+	this.smoothing = smoothing;
+	this.spritesheet = sheet;
+	this.behaviorQueue = [];
+	this.canvas = new openfl_display_Tilemap(sheet.tWidth,sheet.tHeight,sheet,smoothing);
+	this.tile = new openfl_display_Tile(-1);
+	this.canvas.addTile(this.tile);
+	this.addChild(this.canvas);
 };
-$hxClasses["engine.image.Image"] = engine_image_Image;
-engine_image_Image.__name__ = ["engine","image","Image"];
-engine_image_Image.__super__ = openfl_display_Sprite;
-engine_image_Image.prototype = $extend(openfl_display_Sprite.prototype,{
-	bitmap: null
-	,bitmapData: null
-	,setAlign: function(align) {
-		switch(align) {
-		case 1:
-			this.bitmap.set_x(0);
-			this.bitmap.set_y(-this.bitmap.get_height());
-			break;
-		case 2:
-			this.bitmap.set_x(-this.bitmap.get_width() / 2);
-			this.bitmap.set_y(-this.bitmap.get_height());
-			break;
-		case 3:
-			this.bitmap.set_x(-this.bitmap.get_width());
-			this.bitmap.set_y(-this.bitmap.get_height());
-			break;
-		case 4:
-			this.bitmap.set_x(0);
-			this.bitmap.set_y(-this.bitmap.get_height() / 2);
-			break;
-		case 5:
-			this.bitmap.set_x(-this.bitmap.get_width() / 2);
-			this.bitmap.set_y(-this.bitmap.get_height() / 2);
-			break;
-		case 6:
-			this.bitmap.set_x(-this.bitmap.get_width());
-			this.bitmap.set_y(-this.bitmap.get_height() / 2);
-			break;
-		case 7:
-			this.bitmap.set_x(this.bitmap.set_y(0));
-			break;
-		case 8:
-			this.bitmap.set_x(-this.bitmap.get_width() / 2);
-			this.bitmap.set_y(0);
-			break;
-		case 9:
-			this.bitmap.set_x(-this.bitmap.get_width());
-			this.bitmap.set_y(0);
-			break;
-		default:
+$hxClasses["engine.mapsheet.Animation"] = engine_mapsheet_Animation;
+engine_mapsheet_Animation.__name__ = ["engine","mapsheet","Animation"];
+engine_mapsheet_Animation.__super__ = openfl_display_Sprite;
+engine_mapsheet_Animation.prototype = $extend(openfl_display_Sprite.prototype,{
+	canvas: null
+	,tile: null
+	,currentBehavior: null
+	,currentFrameIndex: null
+	,smoothing: null
+	,spritesheet: null
+	,behaviorComplete: null
+	,behaviorQueue: null
+	,behavior: null
+	,loopTime: null
+	,timeElapsed: null
+	,queueBehavior: function(behavior) {
+		var behaviorData = this.resolveBehavior(behavior);
+		if(this.currentBehavior == null) {
+			this.updateBehavior(behaviorData);
+		} else {
+			this.behaviorQueue.push(behaviorData);
 		}
 	}
-	,setCenter: function(centerX,centerY) {
-		this.bitmap.set_x(-centerX);
-		this.bitmap.set_y(-centerY);
+	,resolveBehavior: function(behavior) {
+		if(js_Boot.__instanceof(behavior,engine_mapsheet_data_Behavior)) {
+			return behavior;
+		} else if(typeof(behavior) == "string") {
+			if(this.spritesheet != null) {
+				var _this = this.spritesheet.behaviors;
+				var key = behavior;
+				if(__map_reserved[key] != null) {
+					return _this.getReserved(key);
+				} else {
+					return _this.h[key];
+				}
+			}
+		}
+		return null;
 	}
-	,__class__: engine_image_Image
+	,showBehavior: function(behavior,restart) {
+		if(restart == null) {
+			restart = true;
+		}
+		this.behaviorQueue = [];
+		this.updateBehavior(this.resolveBehavior(behavior),restart);
+	}
+	,showBehaviors: function(behaviors) {
+		this.behaviorQueue = [];
+		var _g = 0;
+		while(_g < behaviors.length) {
+			var behavior = behaviors[_g];
+			++_g;
+			this.behaviorQueue.push(this.resolveBehavior(behavior));
+		}
+		if(this.behaviorQueue.length > 0) {
+			this.updateBehavior(this.behaviorQueue.shift());
+		}
+	}
+	,update: function(deltaTime) {
+		if(!this.behaviorComplete) {
+			this.timeElapsed += deltaTime;
+			var ratio = this.timeElapsed / this.loopTime;
+			if(ratio >= 1) {
+				if(this.currentBehavior.loop) {
+					ratio -= Math.floor(ratio);
+				} else {
+					this.behaviorComplete = true;
+					ratio = 1;
+				}
+			}
+			this.currentFrameIndex = Math.round(ratio * (this.currentBehavior.frames.length - 1));
+			var frame = this.spritesheet.getFrame(this.currentBehavior.frames[this.currentFrameIndex]);
+			this.tile.set_id(frame.id);
+			this.canvas.set_x(frame.x);
+			this.canvas.set_y(frame.y);
+			if(this.behaviorComplete) {
+				if(this.behaviorQueue.length > 0) {
+					this.updateBehavior(this.behaviorQueue.shift());
+				} else if(this.hasEventListener("complete")) {
+					this.dispatchEvent(new openfl_events_Event("complete"));
+				}
+			}
+		}
+	}
+	,updateBehavior: function(behavior,restart) {
+		if(restart == null) {
+			restart = true;
+		}
+		if(behavior != null) {
+			if(restart || behavior != this.currentBehavior) {
+				this.currentBehavior = behavior;
+				this.timeElapsed = 0;
+				this.behaviorComplete = false;
+				this.loopTime = behavior.frames.length / behavior.frameRate * 1000 | 0;
+				if(this.tile.get_id() == -1) {
+					this.update(0);
+				}
+			}
+		} else {
+			this.tile.set_id(-1);
+			this.currentBehavior = null;
+			this.currentFrameIndex = -1;
+			this.behaviorComplete = true;
+		}
+	}
+	,__class__: engine_mapsheet_Animation
+});
+var openfl_display_Tileset = function(bitmapData,rects) {
+	this.__data = [];
+	this.__bitmapData = bitmapData;
+	if(rects != null) {
+		var _g = 0;
+		while(_g < rects.length) {
+			var rect = rects[_g];
+			++_g;
+			this.addRect(rect);
+		}
+	}
+};
+$hxClasses["openfl.display.Tileset"] = openfl_display_Tileset;
+openfl_display_Tileset.__name__ = ["openfl","display","Tileset"];
+openfl_display_Tileset.prototype = {
+	__bitmapData: null
+	,__data: null
+	,addRect: function(rect) {
+		if(rect == null) {
+			return -1;
+		}
+		var tileData = new openfl_display__$Tileset_TileData(rect);
+		tileData.__update(this.__bitmapData);
+		this.__data.push(tileData);
+		return this.__data.length - 1;
+	}
+	,clone: function() {
+		var tileset = new openfl_display_Tileset(this.__bitmapData,null);
+		var rect = openfl_geom_Rectangle.__pool.get();
+		var _g = 0;
+		var _g1 = this.__data;
+		while(_g < _g1.length) {
+			var tileData = _g1[_g];
+			++_g;
+			rect.setTo(tileData.x,tileData.y,tileData.width,tileData.height);
+			tileset.addRect(rect);
+		}
+		openfl_geom_Rectangle.__pool.release(rect);
+		return tileset;
+	}
+	,getRect: function(id) {
+		if(id < this.__data.length && id >= 0) {
+			return new openfl_geom_Rectangle(this.__data[id].x,this.__data[id].y,this.__data[id].width,this.__data[id].height);
+		}
+		return null;
+	}
+	,get_bitmapData: function() {
+		return this.__bitmapData;
+	}
+	,set_bitmapData: function(value) {
+		this.__bitmapData = value;
+		var _g = 0;
+		var _g1 = this.__data;
+		while(_g < _g1.length) {
+			var data = _g1[_g];
+			++_g;
+			data.__update(this.__bitmapData);
+		}
+		return value;
+	}
+	,__class__: openfl_display_Tileset
+	,__properties__: {set_bitmapData:"set_bitmapData",get_bitmapData:"get_bitmapData"}
+};
+var engine_mapsheet_Mapsheet = function(image) {
+	openfl_display_Tileset.call(this,image);
+	this.behaviors = new haxe_ds_StringMap();
+	this.frames = [];
+	this.totalFrames = 0;
+};
+$hxClasses["engine.mapsheet.Mapsheet"] = engine_mapsheet_Mapsheet;
+engine_mapsheet_Mapsheet.__name__ = ["engine","mapsheet","Mapsheet"];
+engine_mapsheet_Mapsheet.__super__ = openfl_display_Tileset;
+engine_mapsheet_Mapsheet.prototype = $extend(openfl_display_Tileset.prototype,{
+	behaviors: null
+	,name: null
+	,totalFrames: null
+	,tWidth: null
+	,tHeight: null
+	,frames: null
+	,slice: function(columns,rows,tileWidth,tileHeight) {
+		this.frames = [];
+		this.totalFrames = columns * rows;
+		if(tileWidth == null) {
+			tileWidth = this.get_bitmapData().width / columns | 0;
+		}
+		this.tWidth = tileWidth;
+		if(tileHeight == null) {
+			tileHeight = this.get_bitmapData().height / rows | 0;
+		}
+		this.tHeight = tileHeight;
+		var _g1 = 0;
+		var _g = rows;
+		while(_g1 < _g) {
+			var i = _g1++;
+			var _g3 = 0;
+			var _g2 = columns;
+			while(_g3 < _g2) {
+				var j = _g3++;
+				this.frames.push(new engine_mapsheet_data_Frame(this.addRect(new openfl_geom_Rectangle(j * tileWidth,i * tileHeight,tileWidth,tileHeight)),0,0,tileWidth,tileHeight));
+			}
+		}
+		haxe_Log.trace(this.frames.length,{ fileName : "Mapsheet.hx", lineNumber : 65, className : "engine.mapsheet.Mapsheet", methodName : "slice"});
+	}
+	,addBehavior: function(behavior) {
+		var key = behavior.name;
+		var _this = this.behaviors;
+		if(__map_reserved[key] != null) {
+			_this.setReserved(key,behavior);
+		} else {
+			_this.h[key] = behavior;
+		}
+	}
+	,getFrame: function(index) {
+		var frame = this.frames[index];
+		if(frame == null) {
+			throw new js__$Boot_HaxeError("mapsheet error: '" + index + "' Frame out of range. (You probably have a behavior that references a wrong tile index)");
+		}
+		return frame;
+	}
+	,addFrame: function(startx,starty,width,height,offsetx,offsety) {
+		if(this.tWidth <= width + offsetx) {
+			this.tWidth = width + offsetx;
+		}
+		if(this.tHeight <= height + offsety) {
+			this.tHeight = height + offsety;
+		}
+		var f = new engine_mapsheet_data_Frame(this.addRect(new openfl_geom_Rectangle(startx,starty,width,height)),offsetx,offsety,width,height);
+		this.frames.push(f);
+		this.totalFrames++;
+		return f.id;
+	}
+	,__class__: engine_mapsheet_Mapsheet
+});
+var engine_mapsheet_data_Behavior = function(name,frames,loop,frameRate) {
+	if(frameRate == null) {
+		frameRate = 30;
+	}
+	if(loop == null) {
+		loop = false;
+	}
+	if(name == null) {
+		name = "";
+	}
+	if(name == "") {
+		name = "behavior" + engine_mapsheet_data_Behavior.uniqueID++;
+	}
+	if(frames == null) {
+		frames = [];
+	}
+	this.name = name;
+	this.frames = frames;
+	this.loop = loop;
+	this.frameRate = frameRate;
+};
+$hxClasses["engine.mapsheet.data.Behavior"] = engine_mapsheet_data_Behavior;
+engine_mapsheet_data_Behavior.__name__ = ["engine","mapsheet","data","Behavior"];
+engine_mapsheet_data_Behavior.prototype = {
+	frameRate: null
+	,frames: null
+	,loop: null
+	,name: null
+	,__class__: engine_mapsheet_data_Behavior
+};
+var engine_mapsheet_data_Frame = function(id,x,y,width,height) {
+	if(height == null) {
+		height = 0;
+	}
+	if(width == null) {
+		width = 0;
+	}
+	if(y == null) {
+		y = 0;
+	}
+	if(x == null) {
+		x = 0;
+	}
+	this.id = id;
+	this.x = x;
+	this.y = y;
+	this.width = width;
+	this.height = height;
+};
+$hxClasses["engine.mapsheet.data.Frame"] = engine_mapsheet_data_Frame;
+engine_mapsheet_data_Frame.__name__ = ["engine","mapsheet","data","Frame"];
+engine_mapsheet_data_Frame.prototype = {
+	id: null
+	,height: null
+	,width: null
+	,x: null
+	,y: null
+	,__class__: engine_mapsheet_data_Frame
+};
+var game_DoorAnimation = function() {
+	openfl_display_Sprite.call(this);
+	var sMask = new openfl_display_Sprite();
+	sMask.get_graphics().beginFill(0);
+	sMask.get_graphics().drawRect(0,0,295,345);
+	sMask.set_x(30);
+	sMask.set_y(25);
+	this.addChild(sMask);
+	this.set_mask(sMask);
+	this.LeftDoor = new openfl_display_Bitmap(openfl_utils_Assets.getBitmapData("img/doorLeft.png"));
+	this.LeftDoor.set_x(25 - this.LeftDoor.get_width());
+	this.LeftDoor.set_y(25);
+	this.addChild(this.LeftDoor);
+	this.RightDoor = new openfl_display_Bitmap(openfl_utils_Assets.getBitmapData("img/doorRight.png"));
+	this.RightDoor.set_x(175 + this.RightDoor.get_width());
+	this.RightDoor.set_y(25);
+	this.addChild(this.RightDoor);
+};
+$hxClasses["game.DoorAnimation"] = game_DoorAnimation;
+game_DoorAnimation.__name__ = ["game","DoorAnimation"];
+game_DoorAnimation.__super__ = openfl_display_Sprite;
+game_DoorAnimation.prototype = $extend(openfl_display_Sprite.prototype,{
+	LeftDoor: null
+	,RightDoor: null
+	,openDoor: function(time) {
+		if(time == null) {
+			time = 0.5;
+		}
+		motion_Actuate.tween(this.LeftDoor,time,{ x : 25 - this.LeftDoor.get_width()}).ease(motion_easing_Quad.get_easeOut());
+		motion_Actuate.tween(this.RightDoor,time,{ x : 175 + this.RightDoor.get_width()}).ease(motion_easing_Quad.get_easeOut());
+	}
+	,closeDoor: function(time) {
+		if(time == null) {
+			time = 0.5;
+		}
+		motion_Actuate.tween(this.LeftDoor,time,{ x : 25}).ease(motion_easing_Quad.get_easeOut());
+		motion_Actuate.tween(this.RightDoor,time,{ x : 175}).ease(motion_easing_Quad.get_easeOut());
+	}
+	,closeDoorAndAlphaFade: function(doortime,fadetime) {
+		if(fadetime == null) {
+			fadetime = 0.5;
+		}
+		if(doortime == null) {
+			doortime = 0.5;
+		}
+		var _gthis = this;
+		motion_Actuate.tween(this.LeftDoor,doortime,{ x : 25}).ease(motion_easing_Quad.get_easeOut());
+		motion_Actuate.tween(this.RightDoor,doortime,{ x : 175}).ease(motion_easing_Quad.get_easeOut()).onComplete(function() {
+			motion_Actuate.tween(_gthis,fadetime,{ alpha : 0}).delay(0.2).ease(motion_easing_Linear.get_easeNone());
+		});
+	}
+	,__class__: game_DoorAnimation
 });
 var game_ElevatorGame = function() {
 	this.score = 0;
 	openfl_display_Sprite.call(this);
 	this.currentTime = this.previousTime = openfl_Lib.getTimer();
+	this.addEventListener("click",$bind(this,this.onClick));
 	this.addEventListener("enterFrame",$bind(this,this.update));
+	this.font = new engine_bitmaptext_BitmapFont(openfl_utils_Assets.getBitmapData("fonts/visitor.png"),openfl_utils_Assets.getText("fonts/visitor.xml"));
 	this.addChild(new openfl_display_Bitmap(openfl_utils_Assets.getBitmapData("img/test.jpg")));
-	this.cursor = new game_VerticalMovingCursor();
+	this.lazybg = new openfl_display_Bitmap(openfl_utils_Assets.getBitmapData("img/bg.png"));
+	this.lazybg.set_y(-this.lazybg.get_height() + 960);
+	this.addChild(this.lazybg);
+	motion_Actuate.tween(this.lazybg,15,{ y : 0}).ease(motion_easing_Linear.get_easeNone());
 	this.bar = new game_VerticalRangeBar();
 	this.bar.set_x(420);
 	this.bar.set_y(45);
 	this.addChild(this.bar);
-	this.good = openfl_utils_Assets.getSound("audio/coin.wav");
-	this.bad = openfl_utils_Assets.getSound("audio/hurt.wav");
+	this.cursor = new game_VerticalMovingCursor();
 	this.cursor.set_x(405);
 	this.cursor.set_y(110);
 	this.addChild(this.cursor);
-	this.addEventListener("click",$bind(this,this.onClick));
-	this.font = new engine_bitmaptext_BitmapFont(openfl_utils_Assets.getBitmapData("fonts/visitor.png"),openfl_utils_Assets.getText("fonts/visitor.xml"));
+	this.good = openfl_utils_Assets.getSound("audio/coin.wav");
+	this.bad = openfl_utils_Assets.getSound("audio/hurt.wav");
 	this.txt = new engine_bitmaptext_BitmapText(this.font,"score: 0",540,null,7);
 	this.addChild(this.txt);
+	this.cables = new openfl_display_Bitmap(openfl_utils_Assets.getBitmapData("img/elevatorCable.png"));
+	this.addChild(this.cables);
+	this.elevatorBox = new openfl_display_Sprite();
+	this.elevatorBox.addChild(new openfl_display_Bitmap(openfl_utils_Assets.getBitmapData("img/elevatorBox.png")));
+	this.elevatorBox.set_x(35);
+	this.elevatorBox.set_y(175);
+	this.addChild(this.elevatorBox);
+	var hideoSheet = new engine_mapsheet_Mapsheet(openfl_utils_Assets.getBitmapData("img/hideo.png"));
+	hideoSheet.slice(5,4);
+	hideoSheet.addBehavior(new engine_mapsheet_data_Behavior("idle",[0],true));
+	hideoSheet.addBehavior(new engine_mapsheet_data_Behavior("good",[0,1,0,1],false,15));
+	hideoSheet.addBehavior(new engine_mapsheet_data_Behavior("meh",[5,6,7],false,10));
+	hideoSheet.addBehavior(new engine_mapsheet_data_Behavior("bad",[10],false,5));
+	hideoSheet.addBehavior(new engine_mapsheet_data_Behavior("suicide",[15,16,17,18,19],true,15));
+	this.hideo = new engine_mapsheet_Animation(hideoSheet);
+	this.hideo.showBehavior("idle");
+	this.hideo.set_x(70);
+	this.hideo.set_y(245);
+	var luSheet = new engine_mapsheet_Mapsheet(openfl_utils_Assets.getBitmapData("img/lu.png"));
+	luSheet.slice(5,4);
+	luSheet.addBehavior(new engine_mapsheet_data_Behavior("idle",[0],true));
+	this.lu = new engine_mapsheet_Animation(luSheet);
+	this.lu.showBehavior("idle");
+	this.addChild(this.lu);
+	this.lu.set_x(200);
+	this.lu.set_y(245);
+	this.addChild(this.hideo);
+	this.doors = new game_DoorAnimation();
+	this.doors.set_x(35);
+	this.doors.set_y(175);
+	this.addChild(this.doors);
 };
 $hxClasses["game.ElevatorGame"] = game_ElevatorGame;
 game_ElevatorGame.__name__ = ["game","ElevatorGame"];
@@ -4929,12 +5259,20 @@ game_ElevatorGame.prototype = $extend(openfl_display_Sprite.prototype,{
 	,bar: null
 	,score: null
 	,txt: null
+	,hideo: null
+	,elevatorBox: null
+	,lu: null
+	,doors: null
+	,cables: null
+	,lazybg: null
 	,onClick: function(e) {
+		this.doors.closeDoorAndAlphaFade();
 		if(this.cursor.canTap) {
 			if(this.cursor.get_y() > game_VerticalRangeBar.GREEN_START - this.cursor.get_height() && this.cursor.get_y() < game_VerticalRangeBar.GREEN_END) {
 				this.score++;
 				this.cursor.speedUp();
 				this.good.play();
+				this.hideo.showBehaviors(["good","idle"]);
 				var staticY = this.cursor.get_y();
 				var scoreThingy = new engine_bitmaptext_BitmapText(this.font,"+1",100,null,4);
 				scoreThingy.set_y(staticY);
@@ -4943,6 +5281,7 @@ game_ElevatorGame.prototype = $extend(openfl_display_Sprite.prototype,{
 				motion_Actuate.tween(scoreThingy,0.5,{ y : staticY - 20, alpha : 0}).delay(0.1).onComplete($bind(this,this.removeChild),[scoreThingy]);
 			} else if(this.cursor.get_y() > game_VerticalRangeBar.NO_PUNISH_START - this.cursor.get_height() && this.cursor.get_y() < game_VerticalRangeBar.NO_PUNISH_END) {
 				this.bad.play();
+				this.hideo.showBehaviors(["meh","idle"]);
 				var staticY1 = this.cursor.get_y();
 				var scoreThingy1 = new engine_bitmaptext_BitmapText(this.font,"+0",100,null,4);
 				scoreThingy1.set_y(staticY1);
@@ -4953,6 +5292,7 @@ game_ElevatorGame.prototype = $extend(openfl_display_Sprite.prototype,{
 				this.score--;
 				this.cursor.speedDown();
 				this.bad.play();
+				this.hideo.showBehaviors(["bad","idle"]);
 				var staticY2 = this.cursor.get_y();
 				var scoreThingy2 = new engine_bitmaptext_BitmapText(this.font,"-1",100,null,4);
 				scoreThingy2.set_y(staticY2);
@@ -4969,6 +5309,8 @@ game_ElevatorGame.prototype = $extend(openfl_display_Sprite.prototype,{
 		game_ElevatorGame.dt = this.currentTime - this.previousTime;
 		this.previousTime = this.currentTime;
 		this.cursor.update(game_ElevatorGame.dt);
+		this.hideo.update(game_ElevatorGame.dt);
+		this.lu.update(game_ElevatorGame.dt);
 	}
 	,__class__: game_ElevatorGame
 });
@@ -32394,7 +32736,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 641803;
+	this.version = 56525;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = ["lime","utils","AssetCache"];
@@ -36468,6 +36810,88 @@ motion_easing_ExpoEaseInOut.prototype = {
 		return c / 2 * (2 - Math.pow(2,-10 * --t)) + b;
 	}
 	,__class__: motion_easing_ExpoEaseInOut
+};
+var motion_easing_Linear = function() { };
+$hxClasses["motion.easing.Linear"] = motion_easing_Linear;
+motion_easing_Linear.__name__ = ["motion","easing","Linear"];
+motion_easing_Linear.__properties__ = {get_easeNone:"get_easeNone"};
+motion_easing_Linear.get_easeNone = function() {
+	return new motion_easing_LinearEaseNone();
+};
+var motion_easing_LinearEaseNone = function() {
+};
+$hxClasses["motion.easing.LinearEaseNone"] = motion_easing_LinearEaseNone;
+motion_easing_LinearEaseNone.__name__ = ["motion","easing","LinearEaseNone"];
+motion_easing_LinearEaseNone.__interfaces__ = [motion_easing_IEasing];
+motion_easing_LinearEaseNone.prototype = {
+	calculate: function(k) {
+		return k;
+	}
+	,ease: function(t,b,c,d) {
+		return c * t / d + b;
+	}
+	,__class__: motion_easing_LinearEaseNone
+};
+var motion_easing_Quad = function() { };
+$hxClasses["motion.easing.Quad"] = motion_easing_Quad;
+motion_easing_Quad.__name__ = ["motion","easing","Quad"];
+motion_easing_Quad.__properties__ = {get_easeOut:"get_easeOut",get_easeInOut:"get_easeInOut",get_easeIn:"get_easeIn"};
+motion_easing_Quad.get_easeIn = function() {
+	return new motion_easing_QuadEaseIn();
+};
+motion_easing_Quad.get_easeInOut = function() {
+	return new motion_easing_QuadEaseInOut();
+};
+motion_easing_Quad.get_easeOut = function() {
+	return new motion_easing_QuadEaseOut();
+};
+var motion_easing_QuadEaseIn = function() {
+};
+$hxClasses["motion.easing.QuadEaseIn"] = motion_easing_QuadEaseIn;
+motion_easing_QuadEaseIn.__name__ = ["motion","easing","QuadEaseIn"];
+motion_easing_QuadEaseIn.__interfaces__ = [motion_easing_IEasing];
+motion_easing_QuadEaseIn.prototype = {
+	calculate: function(k) {
+		return k * k;
+	}
+	,ease: function(t,b,c,d) {
+		return c * (t /= d) * t + b;
+	}
+	,__class__: motion_easing_QuadEaseIn
+};
+var motion_easing_QuadEaseInOut = function() {
+};
+$hxClasses["motion.easing.QuadEaseInOut"] = motion_easing_QuadEaseInOut;
+motion_easing_QuadEaseInOut.__name__ = ["motion","easing","QuadEaseInOut"];
+motion_easing_QuadEaseInOut.__interfaces__ = [motion_easing_IEasing];
+motion_easing_QuadEaseInOut.prototype = {
+	calculate: function(k) {
+		if((k *= 2) < 1) {
+			return 0.5 * k * k;
+		}
+		return -0.5 * ((k - 1) * (k - 3) - 1);
+	}
+	,ease: function(t,b,c,d) {
+		if((t /= d / 2) < 1) {
+			return c / 2 * t * t + b;
+		}
+		return -c / 2 * ((t - 1) * (t - 3) - 1) + b;
+	}
+	,__class__: motion_easing_QuadEaseInOut
+};
+var motion_easing_QuadEaseOut = function() {
+};
+$hxClasses["motion.easing.QuadEaseOut"] = motion_easing_QuadEaseOut;
+motion_easing_QuadEaseOut.__name__ = ["motion","easing","QuadEaseOut"];
+motion_easing_QuadEaseOut.__interfaces__ = [motion_easing_IEasing];
+motion_easing_QuadEaseOut.prototype = {
+	calculate: function(k) {
+		return -k * (k - 2);
+	}
+	,ease: function(t,b,c,d) {
+		return -c * (t /= d) * (t - 2) + b;
+	}
+	,__class__: motion_easing_QuadEaseOut
 };
 var openfl_Lib = function() { };
 $hxClasses["openfl.Lib"] = openfl_Lib;
@@ -68548,69 +68972,6 @@ openfl_display_Tilemap.prototype = $extend(openfl_display_DisplayObject.prototyp
 	,__class__: openfl_display_Tilemap
 	,__properties__: $extend(openfl_display_DisplayObject.prototype.__properties__,{set_tileset:"set_tileset",get_tileset:"get_tileset"})
 });
-var openfl_display_Tileset = function(bitmapData,rects) {
-	this.__data = [];
-	this.__bitmapData = bitmapData;
-	if(rects != null) {
-		var _g = 0;
-		while(_g < rects.length) {
-			var rect = rects[_g];
-			++_g;
-			this.addRect(rect);
-		}
-	}
-};
-$hxClasses["openfl.display.Tileset"] = openfl_display_Tileset;
-openfl_display_Tileset.__name__ = ["openfl","display","Tileset"];
-openfl_display_Tileset.prototype = {
-	__bitmapData: null
-	,__data: null
-	,addRect: function(rect) {
-		if(rect == null) {
-			return -1;
-		}
-		var tileData = new openfl_display__$Tileset_TileData(rect);
-		tileData.__update(this.__bitmapData);
-		this.__data.push(tileData);
-		return this.__data.length - 1;
-	}
-	,clone: function() {
-		var tileset = new openfl_display_Tileset(this.__bitmapData,null);
-		var rect = openfl_geom_Rectangle.__pool.get();
-		var _g = 0;
-		var _g1 = this.__data;
-		while(_g < _g1.length) {
-			var tileData = _g1[_g];
-			++_g;
-			rect.setTo(tileData.x,tileData.y,tileData.width,tileData.height);
-			tileset.addRect(rect);
-		}
-		openfl_geom_Rectangle.__pool.release(rect);
-		return tileset;
-	}
-	,getRect: function(id) {
-		if(id < this.__data.length && id >= 0) {
-			return new openfl_geom_Rectangle(this.__data[id].x,this.__data[id].y,this.__data[id].width,this.__data[id].height);
-		}
-		return null;
-	}
-	,get_bitmapData: function() {
-		return this.__bitmapData;
-	}
-	,set_bitmapData: function(value) {
-		this.__bitmapData = value;
-		var _g = 0;
-		var _g1 = this.__data;
-		while(_g < _g1.length) {
-			var data = _g1[_g];
-			++_g;
-			data.__update(this.__bitmapData);
-		}
-		return value;
-	}
-	,__class__: openfl_display_Tileset
-	,__properties__: {set_bitmapData:"set_bitmapData",get_bitmapData:"get_bitmapData"}
-};
 var openfl_display__$Tileset_TileData = function(rect) {
 	if(rect != null) {
 		this.x = rect.x | 0;
@@ -78762,15 +79123,7 @@ engine_bitmaptext_BitmapText.RIGHT = 6;
 engine_bitmaptext_BitmapText.BOTTOM_LEFT = 1;
 engine_bitmaptext_BitmapText.BOTTOM_CENTER = 2;
 engine_bitmaptext_BitmapText.BOTTOM_RIGHT = 3;
-engine_image_Image.TOP_LEFT = 7;
-engine_image_Image.TOP_CENTER = 8;
-engine_image_Image.TOP_RIGHT = 9;
-engine_image_Image.LEFT = 4;
-engine_image_Image.CENTER = 5;
-engine_image_Image.RIGHT = 6;
-engine_image_Image.BOTTOM_LEFT = 1;
-engine_image_Image.BOTTOM_CENTER = 2;
-engine_image_Image.BOTTOM_RIGHT = 3;
+engine_mapsheet_data_Behavior.uniqueID = 0;
 game_VerticalMovingCursor.TOP_SCROLL = 55;
 game_VerticalMovingCursor.BOT_SCROLL = 885;
 game_VerticalRangeBar.GREEN_START = 440;

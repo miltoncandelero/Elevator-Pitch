@@ -7,10 +7,11 @@
 	
 	<!-- output -->
 	<app main="Main" file="ElevatorPitch" path="bin" />
+	<app preloader="CustomPreloader" />
 	
 	<window background="#FF00FF" fps="60" />
 	<window width="540" height="960" />
-	<window resizable="false" if="mobile" />
+	<window resizable="false"  /> <!--if="mobile"-->
 	<window orientation="portrait" vsync="false" antialiasing="0" if="cpp" />
 	
 	<!-- classpath, haxe libs -->
@@ -23,6 +24,7 @@
 	<assets path="assets/img" rename="img" />
 	<assets path="assets/fonts" rename="fonts" />
 	<assets path="assets/audio" rename="audio" type="audio" />
+	<assets path="assets/preloader" include="*" />
 
 	<!-- optimize output
 	<haxeflag name="-dce full" /> -->

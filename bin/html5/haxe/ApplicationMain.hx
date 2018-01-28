@@ -24,13 +24,13 @@ import haxe.macro.Expr;
 		
 		var config = {
 			
-			build: "68",
+			build: "149",
 			company: "Elemental Code",
 			file: "ElevatorPitch",
 			fps: 60,
 			name: "Elevator Pitch",
 			orientation: "",
-			packageName: "ElevatorPitch.GGJ.ElementalCode",
+			packageName: "elevatorpitch.ggj.elementalcode",
 			version: "1.0.0",
 			windows: [
 				
@@ -50,7 +50,7 @@ import haxe.macro.Expr;
 					maximized: false,
 					minimized: false,
 					parameters: {},
-					resizable: true,
+					resizable: false,
 					stencilBuffer: true,
 					title: "Elevator Pitch",
 					vsync: false,

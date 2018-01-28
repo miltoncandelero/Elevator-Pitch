@@ -54,13 +54,15 @@ class Mapsheet extends Tileset {
 		}
 		this.tHeight = tileHeight;
 		
-		for (i in 0...columns) 
+		for (i in 0...rows) 
 		{
-			for (j in 0...rows) 
+			for (j in 0...columns) 
 			{
 				this.frames.push(new Frame(addRect(new Rectangle(j * tileWidth, i * tileHeight, tileWidth, tileHeight)),0,0,tileWidth,tileHeight));
 			}
 		}
+		
+		trace (frames.length);
 		
 	}
 	
