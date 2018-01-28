@@ -1042,7 +1042,7 @@ $hxClasses["ApplicationMain"] = ApplicationMain;
 ApplicationMain.__name__ = ["ApplicationMain"];
 ApplicationMain.main = function() {
 	var projectName = "ElevatorPitch";
-	var config = { build : "283", company : "Elemental Code", file : "ElevatorPitch", fps : 60, name : "Elevator Pitch", orientation : "", packageName : "elevatorpitch.ggj.elementalcode", version : "1.0.0", windows : [{ allowHighDPI : false, alwaysOnTop : false, antialiasing : 0, background : 0, borderless : false, colorDepth : 16, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 960, hidden : false, maximized : false, minimized : false, parameters : { }, resizable : true, stencilBuffer : true, title : "Elevator Pitch", vsync : false, width : 540, x : null, y : null}]};
+	var config = { build : "291", company : "Elemental Code", file : "ElevatorPitch", fps : 60, name : "Elevator Pitch", orientation : "", packageName : "elevatorpitch.ggj.elementalcode", version : "1.0.0", windows : [{ allowHighDPI : false, alwaysOnTop : false, antialiasing : 0, background : 0, borderless : false, colorDepth : 16, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 960, hidden : false, maximized : false, minimized : false, parameters : { }, resizable : true, stencilBuffer : true, title : "Elevator Pitch", vsync : false, width : 540, x : null, y : null}]};
 	lime_system_System.__registerEntryPoint(projectName,ApplicationMain.create,config);
 };
 ApplicationMain.create = function(config) {
@@ -5808,7 +5808,7 @@ ManifestResources.init = function(config) {
 	var data;
 	var manifest;
 	var library;
-	data = "{\"name\":null,\"assets\":\"aoy4:pathy12:img%2Fbg.pngy4:sizei58102y4:typey5:IMAGEy2:idR1y7:preloadtgoR0y18:img%2FbtnAbout.pngR2i3113R3R4R5R7R6tgoR0y17:img%2FbtnHelp.pngR2i3139R3R4R5R8R6tgoR0y18:img%2FbtnScore.pngR2i3161R3R4R5R9R6tgoR0y28:img%2FcreditsMockupBoard.pngR2i77884R3R4R5R10R6tgoR0y18:img%2FdoorLeft.pngR2i18056R3R4R5R11R6tgoR0y19:img%2FdoorRight.pngR2i18002R3R4R5R12R6tgoR0y19:img%2Fdoorsmask.pngR2i2918R3R4R5R13R6tgoR0y21:img%2FelevatorBox.pngR2i19127R3R4R5R14R6tgoR0y26:img%2FelevatorBoxWired.pngR2i43684R3R4R5R15R6tgoR0y23:img%2FelevatorCable.pngR2i6193R3R4R5R16R6tgoR0y18:img%2Fgaugetap.pngR2i2816R3R4R5R17R6tgoR0y15:img%2Fhideo.pngR2i13955R3R4R5R18R6tgoR0y16:img%2Fhideo2.pngR2i235770R3R4R5R19R6tgoR0y12:img%2Flu.pngR2i10882R3R4R5R20R6tgoR0y20:img%2FpopupBoard.pngR2i24689R3R4R5R21R6tgoR0y20:img%2FpopupBoard.psdR2i748759R3y6:BINARYR5R22R6tgoR0y25:img%2FpopupHelpMockup.pngR2i33172R3R4R5R24R6tgoR0y20:img%2FrustyPipes.pngR2i19056R3R4R5R25R6tgoR0y14:img%2Ftest.jpgR2i51728R3R4R5R26R6tgoR0y23:img%2FverticalGauge.pngR2i18661R3R4R5R27R6tgoR0y19:fonts%2Fvisitor.pngR2i3962R3R4R5R28R6tgoR0y19:fonts%2Fvisitor.xmlR2i10509R3y4:TEXTR5R29R6tgoR2i15528R3y5:SOUNDR5y16:audio%2Fcoin.wavy9:pathGroupaR32hR6tgoR2i6068R3R31R5y16:audio%2Fhurt.wavR33aR34hR6tgoR0y34:assets%2Fpreloader%2Fpreloader.jpgR2i71312R3R4R5R35R6tgh\",\"version\":2,\"libraryArgs\":[],\"libraryType\":null}";
+	data = "{\"name\":null,\"assets\":\"aoy4:pathy12:img%2Fbg.pngy4:sizei58102y4:typey5:IMAGEy2:idR1y7:preloadtgoR0y18:img%2FbtnAbout.pngR2i3113R3R4R5R7R6tgoR0y17:img%2FbtnHelp.pngR2i3139R3R4R5R8R6tgoR0y18:img%2FbtnScore.pngR2i3161R3R4R5R9R6tgoR0y28:img%2FcreditsMockupBoard.pngR2i77884R3R4R5R10R6tgoR0y18:img%2FdoorLeft.pngR2i18056R3R4R5R11R6tgoR0y19:img%2FdoorRight.pngR2i18002R3R4R5R12R6tgoR0y19:img%2Fdoorsmask.pngR2i2918R3R4R5R13R6tgoR0y21:img%2FelevatorBox.pngR2i19127R3R4R5R14R6tgoR0y26:img%2FelevatorBoxWired.pngR2i43684R3R4R5R15R6tgoR0y23:img%2FelevatorCable.pngR2i6193R3R4R5R16R6tgoR0y18:img%2Fgaugetap.pngR2i2816R3R4R5R17R6tgoR0y15:img%2Fhideo.pngR2i13955R3R4R5R18R6tgoR0y16:img%2Fhideo2.pngR2i235770R3R4R5R19R6tgoR0y12:img%2Flu.pngR2i10882R3R4R5R20R6tgoR0y20:img%2FpopupBoard.pngR2i24689R3R4R5R21R6tgoR0y20:img%2FpopupBoard.psdR2i748759R3y6:BINARYR5R22R6tgoR0y25:img%2FpopupHelpMockup.pngR2i33172R3R4R5R24R6tgoR0y20:img%2FrustyPipes.pngR2i19056R3R4R5R25R6tgoR0y14:img%2Ftest.jpgR2i51728R3R4R5R26R6tgoR0y23:img%2FverticalGauge.pngR2i18661R3R4R5R27R6tgoR0y19:fonts%2Fvisitor.pngR2i3962R3R4R5R28R6tgoR0y19:fonts%2Fvisitor.xmlR2i10509R3y4:TEXTR5R29R6tgoR2i15528R3y5:SOUNDR5y16:audio%2Fcoin.wavy9:pathGroupaR32hR6tgoR2i139284R3R31R5y16:audio%2Ffall.wavR33aR34hR6tgoR2i6068R3R31R5y16:audio%2Fhurt.wavR33aR35hR6tgoR0y34:assets%2Fpreloader%2Fpreloader.jpgR2i71312R3R4R5R36R6tgh\",\"version\":2,\"libraryArgs\":[],\"libraryType\":null}";
 	manifest = lime_utils_AssetManifest.parse(data,rootPath);
 	library = lime_utils_AssetLibrary.fromManifest(manifest);
 	lime_utils_Assets.registerLibrary("default",library);
@@ -6958,6 +6958,7 @@ var game_ElevatorGame = function() {
 	this.addChild(this.cursor);
 	this.good = openfl_utils_Assets.getSound("audio/coin.wav");
 	this.bad = openfl_utils_Assets.getSound("audio/hurt.wav");
+	this.fall = openfl_utils_Assets.getSound("audio/fall.wav");
 	this.cables = new openfl_display_Bitmap(openfl_utils_Assets.getBitmapData("img/elevatorCable.png"));
 	this.addChild(this.cables);
 	this.txt = new engine_bitmaptext_BitmapText(game_ElevatorGame.font,"score: 0",540,null,7);
@@ -7017,6 +7018,7 @@ game_ElevatorGame.prototype = $extend(openfl_display_Sprite.prototype,{
 	,cursor: null
 	,good: null
 	,bad: null
+	,fall: null
 	,bar: null
 	,score: null
 	,txt: null
@@ -7036,7 +7038,7 @@ game_ElevatorGame.prototype = $extend(openfl_display_Sprite.prototype,{
 		if(this.state != "MENU") {
 			return;
 		}
-		haxe_Log.trace("going help",{ fileName : "ElevatorGame.hx", lineNumber : 177, className : "game.ElevatorGame", methodName : "goHelp"});
+		haxe_Log.trace("going help",{ fileName : "ElevatorGame.hx", lineNumber : 180, className : "game.ElevatorGame", methodName : "goHelp"});
 		this.state = "ANIMATING";
 		this.helpDialog = new game_HelpScreen();
 		this.helpDialog.set_y(-this.helpDialog.get_height());
@@ -7051,7 +7053,7 @@ game_ElevatorGame.prototype = $extend(openfl_display_Sprite.prototype,{
 		if(this.state != "MENU") {
 			return;
 		}
-		haxe_Log.trace("going about",{ fileName : "ElevatorGame.hx", lineNumber : 192, className : "game.ElevatorGame", methodName : "goAbout"});
+		haxe_Log.trace("going about",{ fileName : "ElevatorGame.hx", lineNumber : 195, className : "game.ElevatorGame", methodName : "goAbout"});
 		this.state = "ANIMATING";
 		this.aboutDialog = new game_AboutScreen();
 		this.aboutDialog.set_y(960);
@@ -7123,6 +7125,7 @@ game_ElevatorGame.prototype = $extend(openfl_display_Sprite.prototype,{
 						this.hideo.showBehavior("suicide");
 						this.lu.showBehavior("fuckup");
 						motion_Actuate.tween(this.hideo,0.5,{ y : 960}).delay(1.5).onComplete($bind(this,this.endGame)).ease(motion_easing_Quad.get_easeIn());
+						motion_Actuate.timer(1.5).onComplete(($_=this.fall,$bind($_,$_.play)));
 					}
 				}
 				this.cursor.taped();
@@ -7182,7 +7185,7 @@ game_ElevatorGame.prototype = $extend(openfl_display_Sprite.prototype,{
 	,endGame: function() {
 		var _gthis = this;
 		motion_Actuate.stop(this.lazybg,null,false,false);
-		haxe_Log.trace("gaming over. state: " + this.state,{ fileName : "ElevatorGame.hx", lineNumber : 343, className : "game.ElevatorGame", methodName : "endGame"});
+		haxe_Log.trace("gaming over. state: " + this.state,{ fileName : "ElevatorGame.hx", lineNumber : 348, className : "game.ElevatorGame", methodName : "endGame"});
 		if(this.state != "GAME" && this.state != "SUICIDE") {
 			return;
 		}
@@ -34430,7 +34433,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 818155;
+	this.version = 939298;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = ["lime","utils","AssetCache"];

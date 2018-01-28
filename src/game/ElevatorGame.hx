@@ -36,6 +36,8 @@ class ElevatorGame extends Sprite
 	var cursor:game.VerticalMovingCursor;
 	var good:Sound;
 	var bad:Sound;
+		var fall:Sound;
+
 	var bar:VerticalRangeBar;
 	
 	var score:Int = 0;
@@ -96,6 +98,7 @@ class ElevatorGame extends Sprite
 		//sounds
 		good = Assets.getSound("audio/coin.wav");
 		bad = Assets.getSound("audio/hurt.wav");
+		fall = Assets.getSound("audio/fall.wav");
 		
 		
 		//cables begind box
@@ -269,6 +272,8 @@ class ElevatorGame extends Sprite
 							hideo.showBehavior("suicide");
 							lu.showBehavior("fuckup");
 							Actuate.tween(hideo, 0.5, {y:Main.HEIGHT}).delay(1.5).onComplete(endGame).ease(Quad.easeIn);
+							Actuate.timer(1.5).onComplete(fall.play);
+							
 						}
 					}
 					
