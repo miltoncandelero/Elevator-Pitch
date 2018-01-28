@@ -20,7 +20,8 @@
 	<haxelib name="actuate" />
 	
 	<!-- assets -->
-	<icon path="assets/openfl.svg" />
+
+	
 	<assets path="assets/img" rename="img" />
 	<assets path="assets/fonts" rename="fonts" />
 	<assets path="assets/audio" rename="audio" type="audio" />
@@ -31,7 +32,16 @@
 	
 	<config:android target-sdk-version="19" />
 	<config:android install-location="preferExternal" />
-
+	
+	
+	<icon path="icon48.png" size="48" />
+	<icon path="icon72.png" size="72" />
+	<icon path="icon75.png" size="75" />
+	<icon path="icon92.png" size="92" />
+	<icon path="icon96.png" size="96" />
+	<icon path="icon144.png" size="144" />
+	<!--<icon path="icon192.png" size="192" />-->
+	<icon path="icon512.png" size="512" />
 
 	
 </project>

@@ -172,7 +172,17 @@ class ElevatorGame extends Sprite
 		btnHelp.addEventListener(MouseEvent.CLICK, goHelp);
 		addChild(btnHelp);
 		
-		tweenToMenustate();
+		title = new Image(Assets.getBitmapData("img/title.png"), 5, null, false);
+		title.x = 270;
+		title.y	= -title.height;
+		addChild(title);
+		
+		tap = new Image(Assets.getBitmapData("img/tap.png"), 5, null, false);
+		tap.x = 270;
+		tap.y	= -tap.height;
+		addChild(tap);
+		
+		Actuate.timer(1).onComplete(tweenToMenustate);
 	}
 	
 	var helpDialog :HelpScreen;
@@ -193,6 +203,8 @@ class ElevatorGame extends Sprite
 	
 	var aboutDialog:AboutScreen;
 	var emergencyBG:Bitmap;
+	var title:engine.image.Image;
+	var tap:engine.image.Image;
 	
 	function goAbout(e:MouseEvent):Void 
 	{
@@ -216,7 +228,9 @@ class ElevatorGame extends Sprite
 		Actuate.tween(lu, 2, {y:245+350});
 		Actuate.tween(doors, 2, {y:175 + 350});
 		Actuate.tween(btnAbout, 1,{y:75});
-		Actuate.tween(btnHelp, 1,{y:75});
+		Actuate.tween(btnHelp, 1, {y:75});
+		Actuate.tween(title, 1, {y:280});
+		Actuate.tween(tap, 1, {y:720});
 		Actuate.timer(2.2).onComplete(function(){state = "MENU"; });
 		//then the buttons and the logo.
 		
@@ -299,6 +313,8 @@ class ElevatorGame extends Sprite
 				Actuate.tween(cursor , 0.5, {x : 405}).ease(Linear.easeNone);
 				Actuate.tween(btnAbout, 0.5, {y: -100}).ease(Linear.easeNone);
 				Actuate.tween(btnHelp, 0.5, {y: -100}).ease(Linear.easeNone);
+				Actuate.tween(title, 0.5, {y: -title.height}).ease(Linear.easeNone);
+				Actuate.tween(tap, 0.5, {y: -tap.height}).ease(Linear.easeNone);
 				
 				Actuate.timer(1.7).onComplete(function () {
 					state = "GAME";

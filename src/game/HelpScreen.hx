@@ -17,7 +17,7 @@ class HelpScreen extends Sprite
 	public function new() 
 	{
 		super();
-		addChild(new Bitmap(Assets.getBitmapData("img/board.png")));
+		addChild(new Bitmap(Assets.getBitmapData("img/boardHelp.png")));
 		
 	}
 
