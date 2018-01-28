@@ -25,7 +25,7 @@ class CustomPreloader extends Preloader
 		
 		back = new Bitmap( new Back(0, 0));
 
-
+		
 		display.addChild(back);
 		
 		display.addEventListener(ProgressEvent.PROGRESS, progress);
@@ -33,8 +33,6 @@ class CustomPreloader extends Preloader
 		super(display);
 		
 	}
-
-
 	
 	public function progress(e:ProgressEvent)
 	{

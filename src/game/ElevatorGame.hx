@@ -2,6 +2,7 @@ package game;
 
 import engine.bitmaptext.BitmapFont;
 import engine.bitmaptext.BitmapText;
+import engine.image.Image;
 import engine.mapsheet.Animation;
 import engine.mapsheet.Mapsheet;
 import engine.mapsheet.data.Behavior;
@@ -29,7 +30,7 @@ class ElevatorGame extends Sprite
 	//DT
 	var currentTime:Int;
 	public static var dt:Int;
-	public var font:BitmapFont;
+	public static var font:BitmapFont;
 	var rustyPipes:Bitmap;
 	var previousTime:Int;
 	var cursor:game.VerticalMovingCursor;
@@ -47,7 +48,11 @@ class ElevatorGame extends Sprite
 	var cables:openfl.display.Bitmap;
 	var lazybg:openfl.display.Bitmap;
 	
-	var state:String = "MENU";
+	var state:String = "ANIMATING";
+	var scoreCart:game.ScoreScreen;
+	var btnAbout:Image;
+	var btnHelp:Image;
+
 	
 	public function new() 
 	{
@@ -92,20 +97,22 @@ class ElevatorGame extends Sprite
 		good = Assets.getSound("audio/coin.wav");
 		bad = Assets.getSound("audio/hurt.wav");
 		
-
-		//score text
-		txt = new BitmapText(font, "score: 0", Main.WIDTH, null, 7	);
-		addChild(txt);
 		
 		//cables begind box
 		cables = new Bitmap(Assets.getBitmapData("img/elevatorCable.png"));
 		addChild(cables);
 		
+		
+		//score text
+		txt = new BitmapText(font, "score: 0", Main.WIDTH, null, 7	);
+		txt.y = Main.HEIGHT - 50;
+		txt.x = 50;
+		
 		//elevator box;
 		elevatorBox = new Sprite();
 		elevatorBox.addChild(new Bitmap(Assets.getBitmapData("img/elevatorBoxWired.png")));
 		elevatorBox.x = 35;
-		elevatorBox.y = 390;
+		elevatorBox.y = 390+570;
 		addChild(elevatorBox);
 		
 
@@ -117,24 +124,25 @@ class ElevatorGame extends Sprite
 		hideoSheet.addBehavior(new Behavior("good", [0,0,0,0, 1,0], false, 10));
 		hideoSheet.addBehavior(new Behavior("meh", [0,0,0,5, 6, 7], false, 10));
 		hideoSheet.addBehavior(new Behavior("bad", [0,0,10,10,10,10,10,10,10],false,10));
-		hideoSheet.addBehavior(new Behavior("suicide", [15,16,17,18,19],true,15));
+		hideoSheet.addBehavior(new Behavior("suicide", [0,0,15,16,17,18,19,0],false,7));
 		
 		hideo = new Animation(hideoSheet);
 		hideo.showBehavior("idle");
 		hideo.x = 70;
-		hideo.y = 245 +350;
+		hideo.y = 245 +350 + 570;
 		
 		//luli
 		var luSheet = new Mapsheet(Assets.getBitmapData("img/lu.png"));
 		luSheet.slice(5, 4);
 		luSheet.addBehavior(new Behavior("idle", [0], true));
 		luSheet.addBehavior(new Behavior("talk", [0, 1, 0, 1],false, 10));
-		luSheet.addBehavior(new Behavior("bad", [0,1,0,1,0,5, 6, 7, 7], false, 15));
+		luSheet.addBehavior(new Behavior("bad", [0,1,0,1,0,5, 6, 7, 7], false, 10));
+		luSheet.addBehavior(new Behavior("fuckup", [5, 6, 7, 7], false, 10));
 		lu = new Animation(luSheet);
 		lu.showBehavior("idle");
 		addChild(lu);
 		lu.x = 200;
-		lu.y = 245 +350;
+		lu.y = 245 +350 + 570;
 		
 		addChild(hideo);
 		//--
@@ -142,10 +150,68 @@ class ElevatorGame extends Sprite
 		//doorContainer
 		doors = new DoorAnimation();
 		doors.x = 35;
-		doors.y = 175 +350;
+		doors.y = 175 +350 +570;
 		addChild(doors);
 		
+		
+		btnAbout = new Image(Assets.getBitmapData("img/btnAbout.png"), 5, null, false);
+		btnAbout .x = 70;
+		btnAbout.y = -100;
+		btnAbout.addEventListener(MouseEvent.CLICK, goAbout);
+		addChild(btnAbout);
+		
+		btnHelp = new Image(Assets.getBitmapData("img/btnHelp.png"), 5, null, false);
+		btnHelp .x = 270;
+		btnHelp.y = -100;
+		btnHelp.addEventListener(MouseEvent.CLICK, goHelp);
+		addChild(btnHelp);
+		
+		tweenToMenustate();
+	}
+	
+	var helpDialog :HelpScreen;
+	
+	function goHelp(e:MouseEvent):Void 
+	{
+		if (state != "MENU") return;
+		trace ("going help");
+		state = "ANIMATING";
+		helpDialog = new HelpScreen();
+		//helpDialog.y = -helpDialog.height;
+		helpDialog.y = -helpDialog.height;
+		addChild(helpDialog);
+		Actuate.tween(helpDialog, 1.5, {y: -Main.HEIGHT / 5 }).ease(Quad.easeOut).onComplete(function () {state = "HELP"; });
 
+	}
+	
+	var aboutDialog:AboutScreen;
+	
+	function goAbout(e:MouseEvent):Void 
+	{
+		if (state != "MENU") return;
+		trace ("going about");
+		state = "ANIMATING";
+		aboutDialog = new AboutScreen();
+		//aboutDialog.y = -aboutDialog.height;
+		aboutDialog.y = Main.HEIGHT;
+		addChild(aboutDialog);
+		Actuate.tween(aboutDialog, 1.5, {y: -Main.HEIGHT / 5 }).ease(Quad.easeOut).onComplete(function () {state = "ABOUT"; });
+		
+	}
+	
+
+	
+	function tweenToMenustate() 
+	{
+		Actuate.tween(elevatorBox, 2, {y:390});
+		Actuate.tween(hideo, 2, {y:245+350});
+		Actuate.tween(lu, 2, {y:245+350});
+		Actuate.tween(doors, 2, {y:175 + 350});
+		Actuate.tween(btnAbout, 1,{y:75});
+		Actuate.tween(btnHelp, 1,{y:75});
+		Actuate.timer(2.2).onComplete(function(){state = "MENU"; });
+		//then the buttons and the logo.
+		
 	}
 	
 	function onClick(e:MouseEvent = null):Void 
@@ -196,6 +262,14 @@ class ElevatorGame extends Sprite
 						scoreThingy.x = 350;
 						addChild(scoreThingy);
 						Actuate.tween(scoreThingy, 0.5, {y:staticY - 20, alpha:0}).delay(0.1).onComplete(removeChild, [scoreThingy]);
+					
+						if (score == -3) //you killed hideo.
+						{
+							state = "SUICIDE";
+							hideo.showBehavior("suicide");
+							lu.showBehavior("fuckup");
+							Actuate.tween(hideo, 0.5, {y:Main.HEIGHT}).delay(1.5).onComplete(endGame).ease(Quad.easeIn);
+						}
 					}
 					
 					cursor.taped();
@@ -204,13 +278,22 @@ class ElevatorGame extends Sprite
 			}
 			
 			case "MENU":{
+				
+				//ill planing right here.
+				
+				if (btnAbout.hitTestPoint(mouseX, mouseY) || btnHelp.hitTestPoint(mouseX, mouseY)) return;
+				
 				state = "ANIMATING"; //inexistent state
 				Actuate.tween(bar , 0.5, {x : 420}).ease(Linear.easeNone);
 				Actuate.tween(cursor , 0.5, {x : 405}).ease(Linear.easeNone);
+				Actuate.tween(btnAbout, 0.5, {y: -100}).ease(Linear.easeNone);
+				Actuate.tween(btnHelp, 0.5, {y: -100}).ease(Linear.easeNone);
+				
 				Actuate.timer(1.7).onComplete(function () {
 					state = "GAME";
-					Actuate.tween(lazybg, 15, {y:0}).ease(Linear.easeNone).onComplete(function (){state="GAMEOVER"; });
+					Actuate.tween(lazybg, 15, {y:0}).ease(Linear.easeNone).onComplete(endGame);
 					Actuate.tween(rustyPipes, 15, {y:0}).ease(Linear.easeNone);
+					addChild(txt);
 				});
 				
 				//start position.
@@ -220,9 +303,66 @@ class ElevatorGame extends Sprite
 				Actuate.tween(elevatorBox, 1, {y:40}).ease(Quad.easeOut).onComplete(doors.openDoor);
 				
 			}
-			default:
+			case "GAMEOVER":{
+				state = "ANIMATING"; //inexistent state
+				lazybg.y = -lazybg.height + Main.HEIGHT;
+				rustyPipes.y = -rustyPipes.height + Main.HEIGHT;
+				bar.x = 420 + 140;
+				bar.y = 45;
+				cursor.x = 405 + 140;
+				cursor.y = 110;
+				score = 0;
+				elevatorBox.y = 390+570;
+				hideo.showBehavior("idle");
+				hideo.y = 245 +350+570;
+				lu.showBehavior("idle");
+				lu.y = 245 +350 + 570;
+				doors.y = 175 +350 + 570;
+				removeChild(txt);
 				
+				Actuate.tween(scoreCart, 1.5, {y:Main.HEIGHT}).ease(Quad.easeOut).onComplete(function () {removeChild(scoreCart); tweenToMenustate(); });
+				
+			}
+			case "ABOUT":{
+				Actuate.tween(aboutDialog, 1.5, {y:Main.HEIGHT}).ease(Quad.easeOut).onComplete(function () {removeChild(aboutDialog); state = "MENU"; });
+				//exit and then go to play state.
+			}
+			
+			case "HELP":{
+				Actuate.tween(helpDialog, 1.5, {y:-helpDialog.height}).ease(Quad.easeOut).onComplete(function () {removeChild(helpDialog); state = "MENU"; });
+				//exit and then go to play state.
+			}
+			default:
+
 		}
+	}
+	
+	function endGame() 
+	{
+		Actuate.stop(lazybg, null, false, false); //just in case.
+		trace ("gaming over. state: " + state);
+		if (state != "GAME" && state != "SUICIDE") return;
+		
+		if (state == "GAME") Actuate.tween(hideo, 1, {y:245-570}).ease(Quad.easeOut);
+		
+		state = "ANIMATING";
+		//end position.
+		doors.closeDoor();
+		Actuate.tween(doors, 1, {y:175-570}).ease(Quad.easeOut);
+		Actuate.tween(lu, 1, {y:245-570}).ease(Quad.easeOut);
+		Actuate.tween(elevatorBox, 1, {y:40 -570}).ease(Quad.easeOut);
+		Actuate.tween(bar , 0.5, {x : 420+140}).ease(Linear.easeNone);
+		Actuate.tween(cursor , 0.5, {x : 405 + 140}).ease(Linear.easeNone);
+		
+		scoreCart = new ScoreScreen(score);
+		scoreCart.y = Main.HEIGHT;
+		addChild(scoreCart);
+		
+		Actuate.tween(scoreCart, 1.5, {y: -Main.HEIGHT / 5 }).ease(Quad.easeOut).delay(1).onComplete(function () {state = "GAMEOVER"; });
+		
+		
+		//bring the score screen.
+		
 	}
 	
 	

@@ -45,7 +45,7 @@ class BitmapText extends Sprite
 		
 		if (height == null) height = font.lineHeight;
 		set = new Tileset(font.B);
-		container = new Tilemap(width, height, set);
+		container = new Tilemap(width, height, set,false);
 		addChild(container);
 		
 		for (i/*:Char*/ in font.charArray) 

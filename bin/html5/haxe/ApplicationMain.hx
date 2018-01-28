@@ -24,7 +24,7 @@ import haxe.macro.Expr;
 		
 		var config = {
 			
-			build: "186",
+			build: "283",
 			company: "Elemental Code",
 			file: "ElevatorPitch",
 			fps: 60,
@@ -38,7 +38,7 @@ import haxe.macro.Expr;
 					allowHighDPI: false,
 					alwaysOnTop: false,
 					antialiasing: 0,
-					background: 16711935,
+					background: 0,
 					borderless: false,
 					colorDepth: 16,
 					depthBuffer: false,
